@@ -1,32 +1,11 @@
-type Sign = '+' | '-' | '*'
-type NumberSign = '+' | '-'
-type Operation = 'add' | 'subtract' | 'multiply'
 type DigitArray = Digit[]
 
 type SanitizeDigitArray<T extends DigitArray> = T extends [
-  '0',
-  ...infer Rest extends DigitArray
+  ...infer Rest extends DigitArray,
+  '0'
 ]
   ? SanitizeDigitArray<Rest>
   : T
-
-type StringTokenizeHead<
-  S extends string,
-  U extends string
-> = S extends `${U}${infer Rest}`
-  ? S extends `${infer Res}${Rest}`
-    ? [Res, Rest]
-    : ['', S]
-  : ['', S]
-
-type StringTokenizeTail<
-  S extends string,
-  U extends string
-> = S extends `${infer Rest}${U}`
-  ? S extends `${Rest}${infer Res}`
-    ? [Rest, Res]
-    : [S, '']
-  : [S, '']
 
 type ToDigitArray<T extends string> = StringTokenizeTail<
   T,
@@ -38,9 +17,18 @@ type ToDigitArray<T extends string> = StringTokenizeTail<
     ]
   : []
 
+type ToString<U extends DigitArray> = U extends [
+  ...infer Rest extends DigitArray,
+  infer Msb extends Digit
+]
+  ? `${Msb}${ToString<Rest>}`
+  : ''
+
 type HasLessDigits<
-  U extends DigitArray,
-  V extends DigitArray
+  UU extends DigitArray,
+  VV extends DigitArray,
+  U extends DigitArray = SanitizeDigitArray<UU>,
+  V extends DigitArray = SanitizeDigitArray<VV>
 > = V['length'] extends 0
   ? false
   : U['length'] extends 0
@@ -57,8 +45,10 @@ type HasMoreDigits<U extends DigitArray, V extends DigitArray> = HasLessDigits<
 >
 
 type HasEqualDigits<
-  U extends DigitArray,
-  V extends DigitArray
+  UU extends DigitArray,
+  VV extends DigitArray,
+  U extends DigitArray = SanitizeDigitArray<UU>,
+  V extends DigitArray = SanitizeDigitArray<VV>
 > = U['length'] extends V['length'] ? true : false
 
 type IsLessThanDigitArrayUtil<
@@ -71,7 +61,7 @@ type IsLessThanDigitArrayUtil<
   : U extends [...infer RestU extends DigitArray, infer MsdU extends Digit]
   ? V extends [...infer RestV extends DigitArray, infer MsdV extends Digit]
     ? IsEqualDigit<MsdU, MsdV> extends true
-      ? IsEqualDigitArray<RestU, RestV>
+      ? IsLessThanDigitArrayUtil<RestU, RestV>
       : IsLessThanDigit<MsdU, MsdV> extends true
       ? true
       : false
@@ -79,8 +69,10 @@ type IsLessThanDigitArrayUtil<
   : never
 
 type IsLessThanDigitArray<
-  U extends DigitArray,
-  V extends DigitArray
+  UU extends DigitArray,
+  VV extends DigitArray,
+  U extends DigitArray = SanitizeDigitArray<UU>,
+  V extends DigitArray = SanitizeDigitArray<VV>
 > = HasLessDigits<U, V> extends true
   ? true
   : HasMoreDigits<U, V> extends true
@@ -111,40 +103,53 @@ type IsEqualDigitArray<
     : false
   : false
 
-type AddDigitArray<
-  U extends DigitArray,
-  V extends DigitArray,
-  Carry extends Digit = '0'
+type AddDigitArrayUtil<
+  UU extends DigitArray,
+  VV extends DigitArray,
+  Carry extends Digit = '0',
+  U extends DigitArray = SanitizeDigitArray<UU>,
+  V extends DigitArray = SanitizeDigitArray<VV>
 > = U extends [infer FirstU extends Digit, ...infer RestU extends DigitArray]
   ? V extends [infer FirstV extends Digit, ...infer RestV extends DigitArray]
     ? [
         AddDigit<FirstU, FirstV, Carry>['val'],
-        ...AddDigitArray<RestU, RestV, AddDigit<FirstU, FirstV, Carry>['carry']>
+        ...AddDigitArrayUtil<
+          RestU,
+          RestV,
+          AddDigit<FirstU, FirstV, Carry>['carry']
+        >
       ]
     : [
         AddDigit<FirstU, '0', Carry>['val'],
-        ...AddDigitArray<RestU, V, AddDigit<FirstU, '0', Carry>['carry']>
+        ...AddDigitArrayUtil<RestU, V, AddDigit<FirstU, '0', Carry>['carry']>
       ]
   : V extends [infer First3 extends Digit, ...infer Rest3 extends DigitArray]
   ? [
       AddDigit<'0', First3, Carry>['val'],
-      ...AddDigitArray<U, Rest3, AddDigit<'0', First3, Carry>['carry']>
+      ...AddDigitArrayUtil<U, Rest3, AddDigit<'0', First3, Carry>['carry']>
     ]
   : Carry extends '0'
   ? []
   : [Carry]
 
-type SubtractDigitArray<
+type AddDigitArray<
   U extends DigitArray,
-  V extends DigitArray,
-  Carry extends Digit = '0'
+  V extends DigitArray
+> = SanitizeDigitArray<AddDigitArrayUtil<U, V>>
+
+type SubtractDigitArrayUtil<
+  UU extends DigitArray,
+  VV extends DigitArray,
+  Carry extends Digit = '0',
+  U extends DigitArray = SanitizeDigitArray<UU>,
+  V extends DigitArray = SanitizeDigitArray<VV>
 > = IsGreaterThanDigitArray<V, U> extends true
   ? never
   : U extends [infer FirstU extends Digit, ...infer RestU extends DigitArray]
   ? V extends [infer FirstV extends Digit, ...infer RestV extends DigitArray]
     ? [
         SubtractDigit<FirstU, FirstV, Carry>['val'],
-        ...SubtractDigitArray<
+        ...SubtractDigitArrayUtil<
           RestU,
           RestV,
           SubtractDigit<FirstU, FirstV, Carry>['carry']
@@ -152,21 +157,47 @@ type SubtractDigitArray<
       ]
     : [
         SubtractDigit<FirstU, '0', Carry>['val'],
-        ...SubtractDigitArray<
+        ...SubtractDigitArrayUtil<
           RestU,
           V,
           SubtractDigit<FirstU, '0', Carry>['carry']
         >
       ]
-  : V extends [infer First3 extends Digit, ...infer Rest3 extends DigitArray]
+  : []
+
+type SubtractDigitArray<
+  U extends DigitArray,
+  V extends DigitArray
+> = SanitizeDigitArray<SubtractDigitArrayUtil<U, V>>
+
+type MultiplyDigitArrayWithDigit<
+  UU extends DigitArray,
+  D extends Digit,
+  C extends Digit = '0',
+  U extends DigitArray = SanitizeDigitArray<UU>
+> = U extends [infer Lsd extends Digit, ...infer Rest extends DigitArray]
   ? [
-      SubtractDigit<'0', First3, Carry>['val'],
-      ...SubtractDigitArray<
-        U,
-        Rest3,
-        SubtractDigit<'0', First3, Carry>['carry']
-      >
+      MultiplyDigit<Lsd, D, C>['val'],
+      ...MultiplyDigitArrayWithDigit<Rest, D, MultiplyDigit<Lsd, D, C>['carry']>
     ]
-  : Carry extends '0'
+  : C extends '0'
   ? []
-  : [Carry]
+  : [C]
+
+type MultiplyDigitArrayUtil<
+  UU extends DigitArray,
+  VV extends DigitArray,
+  P extends DigitArray = [],
+  U extends DigitArray = SanitizeDigitArray<UU>,
+  V extends DigitArray = SanitizeDigitArray<VV>
+> = V extends [infer Lsd extends Digit, ...infer Rest extends DigitArray]
+  ? AddDigitArray<
+      [...P, ...MultiplyDigitArrayWithDigit<U, Lsd>],
+      MultiplyDigitArrayUtil<U, Rest, [...P, '0']>
+    >
+  : []
+
+type MultiplyDigitArray<
+  U extends DigitArray,
+  V extends DigitArray
+> = MultiplyDigitArrayUtil<U, V>

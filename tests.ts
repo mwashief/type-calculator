@@ -1,10 +1,20 @@
-type d1 = ToDigitArray<'59'>
+type d1 = ToDigitArray<'5911'>
 //   ^?
-type d2 = ToDigitArray<'60'>
+type d2 = ToDigitArray<'590'>
 //   ^?
 
-type less = IsLessThanDigitArray<d1, d2>
-
-type a = AddDigitArray<d1, d2>
+type digcom1 = HasLessDigits<d1, d2>
 //   ^?
-type c = AddDigit<'5', '8', '9'>
+type digcom2 = HasLessDigits<d2, d1>
+//   ^?
+type lr = IsLessThanDigitArray<d1, d2>
+//   ^?
+type rl = IsLessThanDigitArray<d2, d1>
+//   ^?
+type d = IsLessThanDigit<'0', '5'>
+//   ^?
+
+type a = ToString<MultiplyDigitArray<d1, d2>>
+//   ^?
+type c = MultiplyDigit<'8', '8', '9'>
+//   ^?

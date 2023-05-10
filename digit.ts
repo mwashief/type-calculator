@@ -4700,3 +4700,2229 @@ type SubtractDigit<
       : DOR<'0', '0'>
     : DOR<'0', '0'>
   : DOR<'0', '0'>
+
+type MultiplyDigit<
+  U extends Digit,
+  V extends Digit,
+  C extends Digit = '0'
+> = U extends '0'
+  ? V extends '0'
+    ? C extends '0'
+      ? DOR<'0', '0'>
+      : C extends '1'
+      ? DOR<'1', '0'>
+      : C extends '2'
+      ? DOR<'2', '0'>
+      : C extends '3'
+      ? DOR<'3', '0'>
+      : C extends '4'
+      ? DOR<'4', '0'>
+      : C extends '5'
+      ? DOR<'5', '0'>
+      : C extends '6'
+      ? DOR<'6', '0'>
+      : C extends '7'
+      ? DOR<'7', '0'>
+      : C extends '8'
+      ? DOR<'8', '0'>
+      : C extends '9'
+      ? DOR<'9', '0'>
+      : DOR<'0', '0'>
+    : V extends '1'
+    ? C extends '0'
+      ? DOR<'0', '0'>
+      : C extends '1'
+      ? DOR<'1', '0'>
+      : C extends '2'
+      ? DOR<'2', '0'>
+      : C extends '3'
+      ? DOR<'3', '0'>
+      : C extends '4'
+      ? DOR<'4', '0'>
+      : C extends '5'
+      ? DOR<'5', '0'>
+      : C extends '6'
+      ? DOR<'6', '0'>
+      : C extends '7'
+      ? DOR<'7', '0'>
+      : C extends '8'
+      ? DOR<'8', '0'>
+      : C extends '9'
+      ? DOR<'9', '0'>
+      : DOR<'0', '0'>
+    : V extends '2'
+    ? C extends '0'
+      ? DOR<'0', '0'>
+      : C extends '1'
+      ? DOR<'1', '0'>
+      : C extends '2'
+      ? DOR<'2', '0'>
+      : C extends '3'
+      ? DOR<'3', '0'>
+      : C extends '4'
+      ? DOR<'4', '0'>
+      : C extends '5'
+      ? DOR<'5', '0'>
+      : C extends '6'
+      ? DOR<'6', '0'>
+      : C extends '7'
+      ? DOR<'7', '0'>
+      : C extends '8'
+      ? DOR<'8', '0'>
+      : C extends '9'
+      ? DOR<'9', '0'>
+      : DOR<'0', '0'>
+    : V extends '3'
+    ? C extends '0'
+      ? DOR<'0', '0'>
+      : C extends '1'
+      ? DOR<'1', '0'>
+      : C extends '2'
+      ? DOR<'2', '0'>
+      : C extends '3'
+      ? DOR<'3', '0'>
+      : C extends '4'
+      ? DOR<'4', '0'>
+      : C extends '5'
+      ? DOR<'5', '0'>
+      : C extends '6'
+      ? DOR<'6', '0'>
+      : C extends '7'
+      ? DOR<'7', '0'>
+      : C extends '8'
+      ? DOR<'8', '0'>
+      : C extends '9'
+      ? DOR<'9', '0'>
+      : DOR<'0', '0'>
+    : V extends '4'
+    ? C extends '0'
+      ? DOR<'0', '0'>
+      : C extends '1'
+      ? DOR<'1', '0'>
+      : C extends '2'
+      ? DOR<'2', '0'>
+      : C extends '3'
+      ? DOR<'3', '0'>
+      : C extends '4'
+      ? DOR<'4', '0'>
+      : C extends '5'
+      ? DOR<'5', '0'>
+      : C extends '6'
+      ? DOR<'6', '0'>
+      : C extends '7'
+      ? DOR<'7', '0'>
+      : C extends '8'
+      ? DOR<'8', '0'>
+      : C extends '9'
+      ? DOR<'9', '0'>
+      : DOR<'0', '0'>
+    : V extends '5'
+    ? C extends '0'
+      ? DOR<'0', '0'>
+      : C extends '1'
+      ? DOR<'1', '0'>
+      : C extends '2'
+      ? DOR<'2', '0'>
+      : C extends '3'
+      ? DOR<'3', '0'>
+      : C extends '4'
+      ? DOR<'4', '0'>
+      : C extends '5'
+      ? DOR<'5', '0'>
+      : C extends '6'
+      ? DOR<'6', '0'>
+      : C extends '7'
+      ? DOR<'7', '0'>
+      : C extends '8'
+      ? DOR<'8', '0'>
+      : C extends '9'
+      ? DOR<'9', '0'>
+      : DOR<'0', '0'>
+    : V extends '6'
+    ? C extends '0'
+      ? DOR<'0', '0'>
+      : C extends '1'
+      ? DOR<'1', '0'>
+      : C extends '2'
+      ? DOR<'2', '0'>
+      : C extends '3'
+      ? DOR<'3', '0'>
+      : C extends '4'
+      ? DOR<'4', '0'>
+      : C extends '5'
+      ? DOR<'5', '0'>
+      : C extends '6'
+      ? DOR<'6', '0'>
+      : C extends '7'
+      ? DOR<'7', '0'>
+      : C extends '8'
+      ? DOR<'8', '0'>
+      : C extends '9'
+      ? DOR<'9', '0'>
+      : DOR<'0', '0'>
+    : V extends '7'
+    ? C extends '0'
+      ? DOR<'0', '0'>
+      : C extends '1'
+      ? DOR<'1', '0'>
+      : C extends '2'
+      ? DOR<'2', '0'>
+      : C extends '3'
+      ? DOR<'3', '0'>
+      : C extends '4'
+      ? DOR<'4', '0'>
+      : C extends '5'
+      ? DOR<'5', '0'>
+      : C extends '6'
+      ? DOR<'6', '0'>
+      : C extends '7'
+      ? DOR<'7', '0'>
+      : C extends '8'
+      ? DOR<'8', '0'>
+      : C extends '9'
+      ? DOR<'9', '0'>
+      : DOR<'0', '0'>
+    : V extends '8'
+    ? C extends '0'
+      ? DOR<'0', '0'>
+      : C extends '1'
+      ? DOR<'1', '0'>
+      : C extends '2'
+      ? DOR<'2', '0'>
+      : C extends '3'
+      ? DOR<'3', '0'>
+      : C extends '4'
+      ? DOR<'4', '0'>
+      : C extends '5'
+      ? DOR<'5', '0'>
+      : C extends '6'
+      ? DOR<'6', '0'>
+      : C extends '7'
+      ? DOR<'7', '0'>
+      : C extends '8'
+      ? DOR<'8', '0'>
+      : C extends '9'
+      ? DOR<'9', '0'>
+      : DOR<'0', '0'>
+    : V extends '9'
+    ? C extends '0'
+      ? DOR<'0', '0'>
+      : C extends '1'
+      ? DOR<'1', '0'>
+      : C extends '2'
+      ? DOR<'2', '0'>
+      : C extends '3'
+      ? DOR<'3', '0'>
+      : C extends '4'
+      ? DOR<'4', '0'>
+      : C extends '5'
+      ? DOR<'5', '0'>
+      : C extends '6'
+      ? DOR<'6', '0'>
+      : C extends '7'
+      ? DOR<'7', '0'>
+      : C extends '8'
+      ? DOR<'8', '0'>
+      : C extends '9'
+      ? DOR<'9', '0'>
+      : DOR<'0', '0'>
+    : DOR<'0', '0'>
+  : U extends '1'
+  ? V extends '0'
+    ? C extends '0'
+      ? DOR<'0', '0'>
+      : C extends '1'
+      ? DOR<'1', '0'>
+      : C extends '2'
+      ? DOR<'2', '0'>
+      : C extends '3'
+      ? DOR<'3', '0'>
+      : C extends '4'
+      ? DOR<'4', '0'>
+      : C extends '5'
+      ? DOR<'5', '0'>
+      : C extends '6'
+      ? DOR<'6', '0'>
+      : C extends '7'
+      ? DOR<'7', '0'>
+      : C extends '8'
+      ? DOR<'8', '0'>
+      : C extends '9'
+      ? DOR<'9', '0'>
+      : DOR<'0', '0'>
+    : V extends '1'
+    ? C extends '0'
+      ? DOR<'1', '0'>
+      : C extends '1'
+      ? DOR<'2', '0'>
+      : C extends '2'
+      ? DOR<'3', '0'>
+      : C extends '3'
+      ? DOR<'4', '0'>
+      : C extends '4'
+      ? DOR<'5', '0'>
+      : C extends '5'
+      ? DOR<'6', '0'>
+      : C extends '6'
+      ? DOR<'7', '0'>
+      : C extends '7'
+      ? DOR<'8', '0'>
+      : C extends '8'
+      ? DOR<'9', '0'>
+      : C extends '9'
+      ? DOR<'0', '1'>
+      : DOR<'0', '0'>
+    : V extends '2'
+    ? C extends '0'
+      ? DOR<'2', '0'>
+      : C extends '1'
+      ? DOR<'3', '0'>
+      : C extends '2'
+      ? DOR<'4', '0'>
+      : C extends '3'
+      ? DOR<'5', '0'>
+      : C extends '4'
+      ? DOR<'6', '0'>
+      : C extends '5'
+      ? DOR<'7', '0'>
+      : C extends '6'
+      ? DOR<'8', '0'>
+      : C extends '7'
+      ? DOR<'9', '0'>
+      : C extends '8'
+      ? DOR<'0', '1'>
+      : C extends '9'
+      ? DOR<'1', '1'>
+      : DOR<'0', '0'>
+    : V extends '3'
+    ? C extends '0'
+      ? DOR<'3', '0'>
+      : C extends '1'
+      ? DOR<'4', '0'>
+      : C extends '2'
+      ? DOR<'5', '0'>
+      : C extends '3'
+      ? DOR<'6', '0'>
+      : C extends '4'
+      ? DOR<'7', '0'>
+      : C extends '5'
+      ? DOR<'8', '0'>
+      : C extends '6'
+      ? DOR<'9', '0'>
+      : C extends '7'
+      ? DOR<'0', '1'>
+      : C extends '8'
+      ? DOR<'1', '1'>
+      : C extends '9'
+      ? DOR<'2', '1'>
+      : DOR<'0', '0'>
+    : V extends '4'
+    ? C extends '0'
+      ? DOR<'4', '0'>
+      : C extends '1'
+      ? DOR<'5', '0'>
+      : C extends '2'
+      ? DOR<'6', '0'>
+      : C extends '3'
+      ? DOR<'7', '0'>
+      : C extends '4'
+      ? DOR<'8', '0'>
+      : C extends '5'
+      ? DOR<'9', '0'>
+      : C extends '6'
+      ? DOR<'0', '1'>
+      : C extends '7'
+      ? DOR<'1', '1'>
+      : C extends '8'
+      ? DOR<'2', '1'>
+      : C extends '9'
+      ? DOR<'3', '1'>
+      : DOR<'0', '0'>
+    : V extends '5'
+    ? C extends '0'
+      ? DOR<'5', '0'>
+      : C extends '1'
+      ? DOR<'6', '0'>
+      : C extends '2'
+      ? DOR<'7', '0'>
+      : C extends '3'
+      ? DOR<'8', '0'>
+      : C extends '4'
+      ? DOR<'9', '0'>
+      : C extends '5'
+      ? DOR<'0', '1'>
+      : C extends '6'
+      ? DOR<'1', '1'>
+      : C extends '7'
+      ? DOR<'2', '1'>
+      : C extends '8'
+      ? DOR<'3', '1'>
+      : C extends '9'
+      ? DOR<'4', '1'>
+      : DOR<'0', '0'>
+    : V extends '6'
+    ? C extends '0'
+      ? DOR<'6', '0'>
+      : C extends '1'
+      ? DOR<'7', '0'>
+      : C extends '2'
+      ? DOR<'8', '0'>
+      : C extends '3'
+      ? DOR<'9', '0'>
+      : C extends '4'
+      ? DOR<'0', '1'>
+      : C extends '5'
+      ? DOR<'1', '1'>
+      : C extends '6'
+      ? DOR<'2', '1'>
+      : C extends '7'
+      ? DOR<'3', '1'>
+      : C extends '8'
+      ? DOR<'4', '1'>
+      : C extends '9'
+      ? DOR<'5', '1'>
+      : DOR<'0', '0'>
+    : V extends '7'
+    ? C extends '0'
+      ? DOR<'7', '0'>
+      : C extends '1'
+      ? DOR<'8', '0'>
+      : C extends '2'
+      ? DOR<'9', '0'>
+      : C extends '3'
+      ? DOR<'0', '1'>
+      : C extends '4'
+      ? DOR<'1', '1'>
+      : C extends '5'
+      ? DOR<'2', '1'>
+      : C extends '6'
+      ? DOR<'3', '1'>
+      : C extends '7'
+      ? DOR<'4', '1'>
+      : C extends '8'
+      ? DOR<'5', '1'>
+      : C extends '9'
+      ? DOR<'6', '1'>
+      : DOR<'0', '0'>
+    : V extends '8'
+    ? C extends '0'
+      ? DOR<'8', '0'>
+      : C extends '1'
+      ? DOR<'9', '0'>
+      : C extends '2'
+      ? DOR<'0', '1'>
+      : C extends '3'
+      ? DOR<'1', '1'>
+      : C extends '4'
+      ? DOR<'2', '1'>
+      : C extends '5'
+      ? DOR<'3', '1'>
+      : C extends '6'
+      ? DOR<'4', '1'>
+      : C extends '7'
+      ? DOR<'5', '1'>
+      : C extends '8'
+      ? DOR<'6', '1'>
+      : C extends '9'
+      ? DOR<'7', '1'>
+      : DOR<'0', '0'>
+    : V extends '9'
+    ? C extends '0'
+      ? DOR<'9', '0'>
+      : C extends '1'
+      ? DOR<'0', '1'>
+      : C extends '2'
+      ? DOR<'1', '1'>
+      : C extends '3'
+      ? DOR<'2', '1'>
+      : C extends '4'
+      ? DOR<'3', '1'>
+      : C extends '5'
+      ? DOR<'4', '1'>
+      : C extends '6'
+      ? DOR<'5', '1'>
+      : C extends '7'
+      ? DOR<'6', '1'>
+      : C extends '8'
+      ? DOR<'7', '1'>
+      : C extends '9'
+      ? DOR<'8', '1'>
+      : DOR<'0', '0'>
+    : DOR<'0', '0'>
+  : U extends '2'
+  ? V extends '0'
+    ? C extends '0'
+      ? DOR<'0', '0'>
+      : C extends '1'
+      ? DOR<'1', '0'>
+      : C extends '2'
+      ? DOR<'2', '0'>
+      : C extends '3'
+      ? DOR<'3', '0'>
+      : C extends '4'
+      ? DOR<'4', '0'>
+      : C extends '5'
+      ? DOR<'5', '0'>
+      : C extends '6'
+      ? DOR<'6', '0'>
+      : C extends '7'
+      ? DOR<'7', '0'>
+      : C extends '8'
+      ? DOR<'8', '0'>
+      : C extends '9'
+      ? DOR<'9', '0'>
+      : DOR<'0', '0'>
+    : V extends '1'
+    ? C extends '0'
+      ? DOR<'2', '0'>
+      : C extends '1'
+      ? DOR<'3', '0'>
+      : C extends '2'
+      ? DOR<'4', '0'>
+      : C extends '3'
+      ? DOR<'5', '0'>
+      : C extends '4'
+      ? DOR<'6', '0'>
+      : C extends '5'
+      ? DOR<'7', '0'>
+      : C extends '6'
+      ? DOR<'8', '0'>
+      : C extends '7'
+      ? DOR<'9', '0'>
+      : C extends '8'
+      ? DOR<'0', '1'>
+      : C extends '9'
+      ? DOR<'1', '1'>
+      : DOR<'0', '0'>
+    : V extends '2'
+    ? C extends '0'
+      ? DOR<'4', '0'>
+      : C extends '1'
+      ? DOR<'5', '0'>
+      : C extends '2'
+      ? DOR<'6', '0'>
+      : C extends '3'
+      ? DOR<'7', '0'>
+      : C extends '4'
+      ? DOR<'8', '0'>
+      : C extends '5'
+      ? DOR<'9', '0'>
+      : C extends '6'
+      ? DOR<'0', '1'>
+      : C extends '7'
+      ? DOR<'1', '1'>
+      : C extends '8'
+      ? DOR<'2', '1'>
+      : C extends '9'
+      ? DOR<'3', '1'>
+      : DOR<'0', '0'>
+    : V extends '3'
+    ? C extends '0'
+      ? DOR<'6', '0'>
+      : C extends '1'
+      ? DOR<'7', '0'>
+      : C extends '2'
+      ? DOR<'8', '0'>
+      : C extends '3'
+      ? DOR<'9', '0'>
+      : C extends '4'
+      ? DOR<'0', '1'>
+      : C extends '5'
+      ? DOR<'1', '1'>
+      : C extends '6'
+      ? DOR<'2', '1'>
+      : C extends '7'
+      ? DOR<'3', '1'>
+      : C extends '8'
+      ? DOR<'4', '1'>
+      : C extends '9'
+      ? DOR<'5', '1'>
+      : DOR<'0', '0'>
+    : V extends '4'
+    ? C extends '0'
+      ? DOR<'8', '0'>
+      : C extends '1'
+      ? DOR<'9', '0'>
+      : C extends '2'
+      ? DOR<'0', '1'>
+      : C extends '3'
+      ? DOR<'1', '1'>
+      : C extends '4'
+      ? DOR<'2', '1'>
+      : C extends '5'
+      ? DOR<'3', '1'>
+      : C extends '6'
+      ? DOR<'4', '1'>
+      : C extends '7'
+      ? DOR<'5', '1'>
+      : C extends '8'
+      ? DOR<'6', '1'>
+      : C extends '9'
+      ? DOR<'7', '1'>
+      : DOR<'0', '0'>
+    : V extends '5'
+    ? C extends '0'
+      ? DOR<'0', '1'>
+      : C extends '1'
+      ? DOR<'1', '1'>
+      : C extends '2'
+      ? DOR<'2', '1'>
+      : C extends '3'
+      ? DOR<'3', '1'>
+      : C extends '4'
+      ? DOR<'4', '1'>
+      : C extends '5'
+      ? DOR<'5', '1'>
+      : C extends '6'
+      ? DOR<'6', '1'>
+      : C extends '7'
+      ? DOR<'7', '1'>
+      : C extends '8'
+      ? DOR<'8', '1'>
+      : C extends '9'
+      ? DOR<'9', '1'>
+      : DOR<'0', '0'>
+    : V extends '6'
+    ? C extends '0'
+      ? DOR<'2', '1'>
+      : C extends '1'
+      ? DOR<'3', '1'>
+      : C extends '2'
+      ? DOR<'4', '1'>
+      : C extends '3'
+      ? DOR<'5', '1'>
+      : C extends '4'
+      ? DOR<'6', '1'>
+      : C extends '5'
+      ? DOR<'7', '1'>
+      : C extends '6'
+      ? DOR<'8', '1'>
+      : C extends '7'
+      ? DOR<'9', '1'>
+      : C extends '8'
+      ? DOR<'0', '2'>
+      : C extends '9'
+      ? DOR<'1', '2'>
+      : DOR<'0', '0'>
+    : V extends '7'
+    ? C extends '0'
+      ? DOR<'4', '1'>
+      : C extends '1'
+      ? DOR<'5', '1'>
+      : C extends '2'
+      ? DOR<'6', '1'>
+      : C extends '3'
+      ? DOR<'7', '1'>
+      : C extends '4'
+      ? DOR<'8', '1'>
+      : C extends '5'
+      ? DOR<'9', '1'>
+      : C extends '6'
+      ? DOR<'0', '2'>
+      : C extends '7'
+      ? DOR<'1', '2'>
+      : C extends '8'
+      ? DOR<'2', '2'>
+      : C extends '9'
+      ? DOR<'3', '2'>
+      : DOR<'0', '0'>
+    : V extends '8'
+    ? C extends '0'
+      ? DOR<'6', '1'>
+      : C extends '1'
+      ? DOR<'7', '1'>
+      : C extends '2'
+      ? DOR<'8', '1'>
+      : C extends '3'
+      ? DOR<'9', '1'>
+      : C extends '4'
+      ? DOR<'0', '2'>
+      : C extends '5'
+      ? DOR<'1', '2'>
+      : C extends '6'
+      ? DOR<'2', '2'>
+      : C extends '7'
+      ? DOR<'3', '2'>
+      : C extends '8'
+      ? DOR<'4', '2'>
+      : C extends '9'
+      ? DOR<'5', '2'>
+      : DOR<'0', '0'>
+    : V extends '9'
+    ? C extends '0'
+      ? DOR<'8', '1'>
+      : C extends '1'
+      ? DOR<'9', '1'>
+      : C extends '2'
+      ? DOR<'0', '2'>
+      : C extends '3'
+      ? DOR<'1', '2'>
+      : C extends '4'
+      ? DOR<'2', '2'>
+      : C extends '5'
+      ? DOR<'3', '2'>
+      : C extends '6'
+      ? DOR<'4', '2'>
+      : C extends '7'
+      ? DOR<'5', '2'>
+      : C extends '8'
+      ? DOR<'6', '2'>
+      : C extends '9'
+      ? DOR<'7', '2'>
+      : DOR<'0', '0'>
+    : DOR<'0', '0'>
+  : U extends '3'
+  ? V extends '0'
+    ? C extends '0'
+      ? DOR<'0', '0'>
+      : C extends '1'
+      ? DOR<'1', '0'>
+      : C extends '2'
+      ? DOR<'2', '0'>
+      : C extends '3'
+      ? DOR<'3', '0'>
+      : C extends '4'
+      ? DOR<'4', '0'>
+      : C extends '5'
+      ? DOR<'5', '0'>
+      : C extends '6'
+      ? DOR<'6', '0'>
+      : C extends '7'
+      ? DOR<'7', '0'>
+      : C extends '8'
+      ? DOR<'8', '0'>
+      : C extends '9'
+      ? DOR<'9', '0'>
+      : DOR<'0', '0'>
+    : V extends '1'
+    ? C extends '0'
+      ? DOR<'3', '0'>
+      : C extends '1'
+      ? DOR<'4', '0'>
+      : C extends '2'
+      ? DOR<'5', '0'>
+      : C extends '3'
+      ? DOR<'6', '0'>
+      : C extends '4'
+      ? DOR<'7', '0'>
+      : C extends '5'
+      ? DOR<'8', '0'>
+      : C extends '6'
+      ? DOR<'9', '0'>
+      : C extends '7'
+      ? DOR<'0', '1'>
+      : C extends '8'
+      ? DOR<'1', '1'>
+      : C extends '9'
+      ? DOR<'2', '1'>
+      : DOR<'0', '0'>
+    : V extends '2'
+    ? C extends '0'
+      ? DOR<'6', '0'>
+      : C extends '1'
+      ? DOR<'7', '0'>
+      : C extends '2'
+      ? DOR<'8', '0'>
+      : C extends '3'
+      ? DOR<'9', '0'>
+      : C extends '4'
+      ? DOR<'0', '1'>
+      : C extends '5'
+      ? DOR<'1', '1'>
+      : C extends '6'
+      ? DOR<'2', '1'>
+      : C extends '7'
+      ? DOR<'3', '1'>
+      : C extends '8'
+      ? DOR<'4', '1'>
+      : C extends '9'
+      ? DOR<'5', '1'>
+      : DOR<'0', '0'>
+    : V extends '3'
+    ? C extends '0'
+      ? DOR<'9', '0'>
+      : C extends '1'
+      ? DOR<'0', '1'>
+      : C extends '2'
+      ? DOR<'1', '1'>
+      : C extends '3'
+      ? DOR<'2', '1'>
+      : C extends '4'
+      ? DOR<'3', '1'>
+      : C extends '5'
+      ? DOR<'4', '1'>
+      : C extends '6'
+      ? DOR<'5', '1'>
+      : C extends '7'
+      ? DOR<'6', '1'>
+      : C extends '8'
+      ? DOR<'7', '1'>
+      : C extends '9'
+      ? DOR<'8', '1'>
+      : DOR<'0', '0'>
+    : V extends '4'
+    ? C extends '0'
+      ? DOR<'2', '1'>
+      : C extends '1'
+      ? DOR<'3', '1'>
+      : C extends '2'
+      ? DOR<'4', '1'>
+      : C extends '3'
+      ? DOR<'5', '1'>
+      : C extends '4'
+      ? DOR<'6', '1'>
+      : C extends '5'
+      ? DOR<'7', '1'>
+      : C extends '6'
+      ? DOR<'8', '1'>
+      : C extends '7'
+      ? DOR<'9', '1'>
+      : C extends '8'
+      ? DOR<'0', '2'>
+      : C extends '9'
+      ? DOR<'1', '2'>
+      : DOR<'0', '0'>
+    : V extends '5'
+    ? C extends '0'
+      ? DOR<'5', '1'>
+      : C extends '1'
+      ? DOR<'6', '1'>
+      : C extends '2'
+      ? DOR<'7', '1'>
+      : C extends '3'
+      ? DOR<'8', '1'>
+      : C extends '4'
+      ? DOR<'9', '1'>
+      : C extends '5'
+      ? DOR<'0', '2'>
+      : C extends '6'
+      ? DOR<'1', '2'>
+      : C extends '7'
+      ? DOR<'2', '2'>
+      : C extends '8'
+      ? DOR<'3', '2'>
+      : C extends '9'
+      ? DOR<'4', '2'>
+      : DOR<'0', '0'>
+    : V extends '6'
+    ? C extends '0'
+      ? DOR<'8', '1'>
+      : C extends '1'
+      ? DOR<'9', '1'>
+      : C extends '2'
+      ? DOR<'0', '2'>
+      : C extends '3'
+      ? DOR<'1', '2'>
+      : C extends '4'
+      ? DOR<'2', '2'>
+      : C extends '5'
+      ? DOR<'3', '2'>
+      : C extends '6'
+      ? DOR<'4', '2'>
+      : C extends '7'
+      ? DOR<'5', '2'>
+      : C extends '8'
+      ? DOR<'6', '2'>
+      : C extends '9'
+      ? DOR<'7', '2'>
+      : DOR<'0', '0'>
+    : V extends '7'
+    ? C extends '0'
+      ? DOR<'1', '2'>
+      : C extends '1'
+      ? DOR<'2', '2'>
+      : C extends '2'
+      ? DOR<'3', '2'>
+      : C extends '3'
+      ? DOR<'4', '2'>
+      : C extends '4'
+      ? DOR<'5', '2'>
+      : C extends '5'
+      ? DOR<'6', '2'>
+      : C extends '6'
+      ? DOR<'7', '2'>
+      : C extends '7'
+      ? DOR<'8', '2'>
+      : C extends '8'
+      ? DOR<'9', '2'>
+      : C extends '9'
+      ? DOR<'0', '3'>
+      : DOR<'0', '0'>
+    : V extends '8'
+    ? C extends '0'
+      ? DOR<'4', '2'>
+      : C extends '1'
+      ? DOR<'5', '2'>
+      : C extends '2'
+      ? DOR<'6', '2'>
+      : C extends '3'
+      ? DOR<'7', '2'>
+      : C extends '4'
+      ? DOR<'8', '2'>
+      : C extends '5'
+      ? DOR<'9', '2'>
+      : C extends '6'
+      ? DOR<'0', '3'>
+      : C extends '7'
+      ? DOR<'1', '3'>
+      : C extends '8'
+      ? DOR<'2', '3'>
+      : C extends '9'
+      ? DOR<'3', '3'>
+      : DOR<'0', '0'>
+    : V extends '9'
+    ? C extends '0'
+      ? DOR<'7', '2'>
+      : C extends '1'
+      ? DOR<'8', '2'>
+      : C extends '2'
+      ? DOR<'9', '2'>
+      : C extends '3'
+      ? DOR<'0', '3'>
+      : C extends '4'
+      ? DOR<'1', '3'>
+      : C extends '5'
+      ? DOR<'2', '3'>
+      : C extends '6'
+      ? DOR<'3', '3'>
+      : C extends '7'
+      ? DOR<'4', '3'>
+      : C extends '8'
+      ? DOR<'5', '3'>
+      : C extends '9'
+      ? DOR<'6', '3'>
+      : DOR<'0', '0'>
+    : DOR<'0', '0'>
+  : U extends '4'
+  ? V extends '0'
+    ? C extends '0'
+      ? DOR<'0', '0'>
+      : C extends '1'
+      ? DOR<'1', '0'>
+      : C extends '2'
+      ? DOR<'2', '0'>
+      : C extends '3'
+      ? DOR<'3', '0'>
+      : C extends '4'
+      ? DOR<'4', '0'>
+      : C extends '5'
+      ? DOR<'5', '0'>
+      : C extends '6'
+      ? DOR<'6', '0'>
+      : C extends '7'
+      ? DOR<'7', '0'>
+      : C extends '8'
+      ? DOR<'8', '0'>
+      : C extends '9'
+      ? DOR<'9', '0'>
+      : DOR<'0', '0'>
+    : V extends '1'
+    ? C extends '0'
+      ? DOR<'4', '0'>
+      : C extends '1'
+      ? DOR<'5', '0'>
+      : C extends '2'
+      ? DOR<'6', '0'>
+      : C extends '3'
+      ? DOR<'7', '0'>
+      : C extends '4'
+      ? DOR<'8', '0'>
+      : C extends '5'
+      ? DOR<'9', '0'>
+      : C extends '6'
+      ? DOR<'0', '1'>
+      : C extends '7'
+      ? DOR<'1', '1'>
+      : C extends '8'
+      ? DOR<'2', '1'>
+      : C extends '9'
+      ? DOR<'3', '1'>
+      : DOR<'0', '0'>
+    : V extends '2'
+    ? C extends '0'
+      ? DOR<'8', '0'>
+      : C extends '1'
+      ? DOR<'9', '0'>
+      : C extends '2'
+      ? DOR<'0', '1'>
+      : C extends '3'
+      ? DOR<'1', '1'>
+      : C extends '4'
+      ? DOR<'2', '1'>
+      : C extends '5'
+      ? DOR<'3', '1'>
+      : C extends '6'
+      ? DOR<'4', '1'>
+      : C extends '7'
+      ? DOR<'5', '1'>
+      : C extends '8'
+      ? DOR<'6', '1'>
+      : C extends '9'
+      ? DOR<'7', '1'>
+      : DOR<'0', '0'>
+    : V extends '3'
+    ? C extends '0'
+      ? DOR<'2', '1'>
+      : C extends '1'
+      ? DOR<'3', '1'>
+      : C extends '2'
+      ? DOR<'4', '1'>
+      : C extends '3'
+      ? DOR<'5', '1'>
+      : C extends '4'
+      ? DOR<'6', '1'>
+      : C extends '5'
+      ? DOR<'7', '1'>
+      : C extends '6'
+      ? DOR<'8', '1'>
+      : C extends '7'
+      ? DOR<'9', '1'>
+      : C extends '8'
+      ? DOR<'0', '2'>
+      : C extends '9'
+      ? DOR<'1', '2'>
+      : DOR<'0', '0'>
+    : V extends '4'
+    ? C extends '0'
+      ? DOR<'6', '1'>
+      : C extends '1'
+      ? DOR<'7', '1'>
+      : C extends '2'
+      ? DOR<'8', '1'>
+      : C extends '3'
+      ? DOR<'9', '1'>
+      : C extends '4'
+      ? DOR<'0', '2'>
+      : C extends '5'
+      ? DOR<'1', '2'>
+      : C extends '6'
+      ? DOR<'2', '2'>
+      : C extends '7'
+      ? DOR<'3', '2'>
+      : C extends '8'
+      ? DOR<'4', '2'>
+      : C extends '9'
+      ? DOR<'5', '2'>
+      : DOR<'0', '0'>
+    : V extends '5'
+    ? C extends '0'
+      ? DOR<'0', '2'>
+      : C extends '1'
+      ? DOR<'1', '2'>
+      : C extends '2'
+      ? DOR<'2', '2'>
+      : C extends '3'
+      ? DOR<'3', '2'>
+      : C extends '4'
+      ? DOR<'4', '2'>
+      : C extends '5'
+      ? DOR<'5', '2'>
+      : C extends '6'
+      ? DOR<'6', '2'>
+      : C extends '7'
+      ? DOR<'7', '2'>
+      : C extends '8'
+      ? DOR<'8', '2'>
+      : C extends '9'
+      ? DOR<'9', '2'>
+      : DOR<'0', '0'>
+    : V extends '6'
+    ? C extends '0'
+      ? DOR<'4', '2'>
+      : C extends '1'
+      ? DOR<'5', '2'>
+      : C extends '2'
+      ? DOR<'6', '2'>
+      : C extends '3'
+      ? DOR<'7', '2'>
+      : C extends '4'
+      ? DOR<'8', '2'>
+      : C extends '5'
+      ? DOR<'9', '2'>
+      : C extends '6'
+      ? DOR<'0', '3'>
+      : C extends '7'
+      ? DOR<'1', '3'>
+      : C extends '8'
+      ? DOR<'2', '3'>
+      : C extends '9'
+      ? DOR<'3', '3'>
+      : DOR<'0', '0'>
+    : V extends '7'
+    ? C extends '0'
+      ? DOR<'8', '2'>
+      : C extends '1'
+      ? DOR<'9', '2'>
+      : C extends '2'
+      ? DOR<'0', '3'>
+      : C extends '3'
+      ? DOR<'1', '3'>
+      : C extends '4'
+      ? DOR<'2', '3'>
+      : C extends '5'
+      ? DOR<'3', '3'>
+      : C extends '6'
+      ? DOR<'4', '3'>
+      : C extends '7'
+      ? DOR<'5', '3'>
+      : C extends '8'
+      ? DOR<'6', '3'>
+      : C extends '9'
+      ? DOR<'7', '3'>
+      : DOR<'0', '0'>
+    : V extends '8'
+    ? C extends '0'
+      ? DOR<'2', '3'>
+      : C extends '1'
+      ? DOR<'3', '3'>
+      : C extends '2'
+      ? DOR<'4', '3'>
+      : C extends '3'
+      ? DOR<'5', '3'>
+      : C extends '4'
+      ? DOR<'6', '3'>
+      : C extends '5'
+      ? DOR<'7', '3'>
+      : C extends '6'
+      ? DOR<'8', '3'>
+      : C extends '7'
+      ? DOR<'9', '3'>
+      : C extends '8'
+      ? DOR<'0', '4'>
+      : C extends '9'
+      ? DOR<'1', '4'>
+      : DOR<'0', '0'>
+    : V extends '9'
+    ? C extends '0'
+      ? DOR<'6', '3'>
+      : C extends '1'
+      ? DOR<'7', '3'>
+      : C extends '2'
+      ? DOR<'8', '3'>
+      : C extends '3'
+      ? DOR<'9', '3'>
+      : C extends '4'
+      ? DOR<'0', '4'>
+      : C extends '5'
+      ? DOR<'1', '4'>
+      : C extends '6'
+      ? DOR<'2', '4'>
+      : C extends '7'
+      ? DOR<'3', '4'>
+      : C extends '8'
+      ? DOR<'4', '4'>
+      : C extends '9'
+      ? DOR<'5', '4'>
+      : DOR<'0', '0'>
+    : DOR<'0', '0'>
+  : U extends '5'
+  ? V extends '0'
+    ? C extends '0'
+      ? DOR<'0', '0'>
+      : C extends '1'
+      ? DOR<'1', '0'>
+      : C extends '2'
+      ? DOR<'2', '0'>
+      : C extends '3'
+      ? DOR<'3', '0'>
+      : C extends '4'
+      ? DOR<'4', '0'>
+      : C extends '5'
+      ? DOR<'5', '0'>
+      : C extends '6'
+      ? DOR<'6', '0'>
+      : C extends '7'
+      ? DOR<'7', '0'>
+      : C extends '8'
+      ? DOR<'8', '0'>
+      : C extends '9'
+      ? DOR<'9', '0'>
+      : DOR<'0', '0'>
+    : V extends '1'
+    ? C extends '0'
+      ? DOR<'5', '0'>
+      : C extends '1'
+      ? DOR<'6', '0'>
+      : C extends '2'
+      ? DOR<'7', '0'>
+      : C extends '3'
+      ? DOR<'8', '0'>
+      : C extends '4'
+      ? DOR<'9', '0'>
+      : C extends '5'
+      ? DOR<'0', '1'>
+      : C extends '6'
+      ? DOR<'1', '1'>
+      : C extends '7'
+      ? DOR<'2', '1'>
+      : C extends '8'
+      ? DOR<'3', '1'>
+      : C extends '9'
+      ? DOR<'4', '1'>
+      : DOR<'0', '0'>
+    : V extends '2'
+    ? C extends '0'
+      ? DOR<'0', '1'>
+      : C extends '1'
+      ? DOR<'1', '1'>
+      : C extends '2'
+      ? DOR<'2', '1'>
+      : C extends '3'
+      ? DOR<'3', '1'>
+      : C extends '4'
+      ? DOR<'4', '1'>
+      : C extends '5'
+      ? DOR<'5', '1'>
+      : C extends '6'
+      ? DOR<'6', '1'>
+      : C extends '7'
+      ? DOR<'7', '1'>
+      : C extends '8'
+      ? DOR<'8', '1'>
+      : C extends '9'
+      ? DOR<'9', '1'>
+      : DOR<'0', '0'>
+    : V extends '3'
+    ? C extends '0'
+      ? DOR<'5', '1'>
+      : C extends '1'
+      ? DOR<'6', '1'>
+      : C extends '2'
+      ? DOR<'7', '1'>
+      : C extends '3'
+      ? DOR<'8', '1'>
+      : C extends '4'
+      ? DOR<'9', '1'>
+      : C extends '5'
+      ? DOR<'0', '2'>
+      : C extends '6'
+      ? DOR<'1', '2'>
+      : C extends '7'
+      ? DOR<'2', '2'>
+      : C extends '8'
+      ? DOR<'3', '2'>
+      : C extends '9'
+      ? DOR<'4', '2'>
+      : DOR<'0', '0'>
+    : V extends '4'
+    ? C extends '0'
+      ? DOR<'0', '2'>
+      : C extends '1'
+      ? DOR<'1', '2'>
+      : C extends '2'
+      ? DOR<'2', '2'>
+      : C extends '3'
+      ? DOR<'3', '2'>
+      : C extends '4'
+      ? DOR<'4', '2'>
+      : C extends '5'
+      ? DOR<'5', '2'>
+      : C extends '6'
+      ? DOR<'6', '2'>
+      : C extends '7'
+      ? DOR<'7', '2'>
+      : C extends '8'
+      ? DOR<'8', '2'>
+      : C extends '9'
+      ? DOR<'9', '2'>
+      : DOR<'0', '0'>
+    : V extends '5'
+    ? C extends '0'
+      ? DOR<'5', '2'>
+      : C extends '1'
+      ? DOR<'6', '2'>
+      : C extends '2'
+      ? DOR<'7', '2'>
+      : C extends '3'
+      ? DOR<'8', '2'>
+      : C extends '4'
+      ? DOR<'9', '2'>
+      : C extends '5'
+      ? DOR<'0', '3'>
+      : C extends '6'
+      ? DOR<'1', '3'>
+      : C extends '7'
+      ? DOR<'2', '3'>
+      : C extends '8'
+      ? DOR<'3', '3'>
+      : C extends '9'
+      ? DOR<'4', '3'>
+      : DOR<'0', '0'>
+    : V extends '6'
+    ? C extends '0'
+      ? DOR<'0', '3'>
+      : C extends '1'
+      ? DOR<'1', '3'>
+      : C extends '2'
+      ? DOR<'2', '3'>
+      : C extends '3'
+      ? DOR<'3', '3'>
+      : C extends '4'
+      ? DOR<'4', '3'>
+      : C extends '5'
+      ? DOR<'5', '3'>
+      : C extends '6'
+      ? DOR<'6', '3'>
+      : C extends '7'
+      ? DOR<'7', '3'>
+      : C extends '8'
+      ? DOR<'8', '3'>
+      : C extends '9'
+      ? DOR<'9', '3'>
+      : DOR<'0', '0'>
+    : V extends '7'
+    ? C extends '0'
+      ? DOR<'5', '3'>
+      : C extends '1'
+      ? DOR<'6', '3'>
+      : C extends '2'
+      ? DOR<'7', '3'>
+      : C extends '3'
+      ? DOR<'8', '3'>
+      : C extends '4'
+      ? DOR<'9', '3'>
+      : C extends '5'
+      ? DOR<'0', '4'>
+      : C extends '6'
+      ? DOR<'1', '4'>
+      : C extends '7'
+      ? DOR<'2', '4'>
+      : C extends '8'
+      ? DOR<'3', '4'>
+      : C extends '9'
+      ? DOR<'4', '4'>
+      : DOR<'0', '0'>
+    : V extends '8'
+    ? C extends '0'
+      ? DOR<'0', '4'>
+      : C extends '1'
+      ? DOR<'1', '4'>
+      : C extends '2'
+      ? DOR<'2', '4'>
+      : C extends '3'
+      ? DOR<'3', '4'>
+      : C extends '4'
+      ? DOR<'4', '4'>
+      : C extends '5'
+      ? DOR<'5', '4'>
+      : C extends '6'
+      ? DOR<'6', '4'>
+      : C extends '7'
+      ? DOR<'7', '4'>
+      : C extends '8'
+      ? DOR<'8', '4'>
+      : C extends '9'
+      ? DOR<'9', '4'>
+      : DOR<'0', '0'>
+    : V extends '9'
+    ? C extends '0'
+      ? DOR<'5', '4'>
+      : C extends '1'
+      ? DOR<'6', '4'>
+      : C extends '2'
+      ? DOR<'7', '4'>
+      : C extends '3'
+      ? DOR<'8', '4'>
+      : C extends '4'
+      ? DOR<'9', '4'>
+      : C extends '5'
+      ? DOR<'0', '5'>
+      : C extends '6'
+      ? DOR<'1', '5'>
+      : C extends '7'
+      ? DOR<'2', '5'>
+      : C extends '8'
+      ? DOR<'3', '5'>
+      : C extends '9'
+      ? DOR<'4', '5'>
+      : DOR<'0', '0'>
+    : DOR<'0', '0'>
+  : U extends '6'
+  ? V extends '0'
+    ? C extends '0'
+      ? DOR<'0', '0'>
+      : C extends '1'
+      ? DOR<'1', '0'>
+      : C extends '2'
+      ? DOR<'2', '0'>
+      : C extends '3'
+      ? DOR<'3', '0'>
+      : C extends '4'
+      ? DOR<'4', '0'>
+      : C extends '5'
+      ? DOR<'5', '0'>
+      : C extends '6'
+      ? DOR<'6', '0'>
+      : C extends '7'
+      ? DOR<'7', '0'>
+      : C extends '8'
+      ? DOR<'8', '0'>
+      : C extends '9'
+      ? DOR<'9', '0'>
+      : DOR<'0', '0'>
+    : V extends '1'
+    ? C extends '0'
+      ? DOR<'6', '0'>
+      : C extends '1'
+      ? DOR<'7', '0'>
+      : C extends '2'
+      ? DOR<'8', '0'>
+      : C extends '3'
+      ? DOR<'9', '0'>
+      : C extends '4'
+      ? DOR<'0', '1'>
+      : C extends '5'
+      ? DOR<'1', '1'>
+      : C extends '6'
+      ? DOR<'2', '1'>
+      : C extends '7'
+      ? DOR<'3', '1'>
+      : C extends '8'
+      ? DOR<'4', '1'>
+      : C extends '9'
+      ? DOR<'5', '1'>
+      : DOR<'0', '0'>
+    : V extends '2'
+    ? C extends '0'
+      ? DOR<'2', '1'>
+      : C extends '1'
+      ? DOR<'3', '1'>
+      : C extends '2'
+      ? DOR<'4', '1'>
+      : C extends '3'
+      ? DOR<'5', '1'>
+      : C extends '4'
+      ? DOR<'6', '1'>
+      : C extends '5'
+      ? DOR<'7', '1'>
+      : C extends '6'
+      ? DOR<'8', '1'>
+      : C extends '7'
+      ? DOR<'9', '1'>
+      : C extends '8'
+      ? DOR<'0', '2'>
+      : C extends '9'
+      ? DOR<'1', '2'>
+      : DOR<'0', '0'>
+    : V extends '3'
+    ? C extends '0'
+      ? DOR<'8', '1'>
+      : C extends '1'
+      ? DOR<'9', '1'>
+      : C extends '2'
+      ? DOR<'0', '2'>
+      : C extends '3'
+      ? DOR<'1', '2'>
+      : C extends '4'
+      ? DOR<'2', '2'>
+      : C extends '5'
+      ? DOR<'3', '2'>
+      : C extends '6'
+      ? DOR<'4', '2'>
+      : C extends '7'
+      ? DOR<'5', '2'>
+      : C extends '8'
+      ? DOR<'6', '2'>
+      : C extends '9'
+      ? DOR<'7', '2'>
+      : DOR<'0', '0'>
+    : V extends '4'
+    ? C extends '0'
+      ? DOR<'4', '2'>
+      : C extends '1'
+      ? DOR<'5', '2'>
+      : C extends '2'
+      ? DOR<'6', '2'>
+      : C extends '3'
+      ? DOR<'7', '2'>
+      : C extends '4'
+      ? DOR<'8', '2'>
+      : C extends '5'
+      ? DOR<'9', '2'>
+      : C extends '6'
+      ? DOR<'0', '3'>
+      : C extends '7'
+      ? DOR<'1', '3'>
+      : C extends '8'
+      ? DOR<'2', '3'>
+      : C extends '9'
+      ? DOR<'3', '3'>
+      : DOR<'0', '0'>
+    : V extends '5'
+    ? C extends '0'
+      ? DOR<'0', '3'>
+      : C extends '1'
+      ? DOR<'1', '3'>
+      : C extends '2'
+      ? DOR<'2', '3'>
+      : C extends '3'
+      ? DOR<'3', '3'>
+      : C extends '4'
+      ? DOR<'4', '3'>
+      : C extends '5'
+      ? DOR<'5', '3'>
+      : C extends '6'
+      ? DOR<'6', '3'>
+      : C extends '7'
+      ? DOR<'7', '3'>
+      : C extends '8'
+      ? DOR<'8', '3'>
+      : C extends '9'
+      ? DOR<'9', '3'>
+      : DOR<'0', '0'>
+    : V extends '6'
+    ? C extends '0'
+      ? DOR<'6', '3'>
+      : C extends '1'
+      ? DOR<'7', '3'>
+      : C extends '2'
+      ? DOR<'8', '3'>
+      : C extends '3'
+      ? DOR<'9', '3'>
+      : C extends '4'
+      ? DOR<'0', '4'>
+      : C extends '5'
+      ? DOR<'1', '4'>
+      : C extends '6'
+      ? DOR<'2', '4'>
+      : C extends '7'
+      ? DOR<'3', '4'>
+      : C extends '8'
+      ? DOR<'4', '4'>
+      : C extends '9'
+      ? DOR<'5', '4'>
+      : DOR<'0', '0'>
+    : V extends '7'
+    ? C extends '0'
+      ? DOR<'2', '4'>
+      : C extends '1'
+      ? DOR<'3', '4'>
+      : C extends '2'
+      ? DOR<'4', '4'>
+      : C extends '3'
+      ? DOR<'5', '4'>
+      : C extends '4'
+      ? DOR<'6', '4'>
+      : C extends '5'
+      ? DOR<'7', '4'>
+      : C extends '6'
+      ? DOR<'8', '4'>
+      : C extends '7'
+      ? DOR<'9', '4'>
+      : C extends '8'
+      ? DOR<'0', '5'>
+      : C extends '9'
+      ? DOR<'1', '5'>
+      : DOR<'0', '0'>
+    : V extends '8'
+    ? C extends '0'
+      ? DOR<'8', '4'>
+      : C extends '1'
+      ? DOR<'9', '4'>
+      : C extends '2'
+      ? DOR<'0', '5'>
+      : C extends '3'
+      ? DOR<'1', '5'>
+      : C extends '4'
+      ? DOR<'2', '5'>
+      : C extends '5'
+      ? DOR<'3', '5'>
+      : C extends '6'
+      ? DOR<'4', '5'>
+      : C extends '7'
+      ? DOR<'5', '5'>
+      : C extends '8'
+      ? DOR<'6', '5'>
+      : C extends '9'
+      ? DOR<'7', '5'>
+      : DOR<'0', '0'>
+    : V extends '9'
+    ? C extends '0'
+      ? DOR<'4', '5'>
+      : C extends '1'
+      ? DOR<'5', '5'>
+      : C extends '2'
+      ? DOR<'6', '5'>
+      : C extends '3'
+      ? DOR<'7', '5'>
+      : C extends '4'
+      ? DOR<'8', '5'>
+      : C extends '5'
+      ? DOR<'9', '5'>
+      : C extends '6'
+      ? DOR<'0', '6'>
+      : C extends '7'
+      ? DOR<'1', '6'>
+      : C extends '8'
+      ? DOR<'2', '6'>
+      : C extends '9'
+      ? DOR<'3', '6'>
+      : DOR<'0', '0'>
+    : DOR<'0', '0'>
+  : U extends '7'
+  ? V extends '0'
+    ? C extends '0'
+      ? DOR<'0', '0'>
+      : C extends '1'
+      ? DOR<'1', '0'>
+      : C extends '2'
+      ? DOR<'2', '0'>
+      : C extends '3'
+      ? DOR<'3', '0'>
+      : C extends '4'
+      ? DOR<'4', '0'>
+      : C extends '5'
+      ? DOR<'5', '0'>
+      : C extends '6'
+      ? DOR<'6', '0'>
+      : C extends '7'
+      ? DOR<'7', '0'>
+      : C extends '8'
+      ? DOR<'8', '0'>
+      : C extends '9'
+      ? DOR<'9', '0'>
+      : DOR<'0', '0'>
+    : V extends '1'
+    ? C extends '0'
+      ? DOR<'7', '0'>
+      : C extends '1'
+      ? DOR<'8', '0'>
+      : C extends '2'
+      ? DOR<'9', '0'>
+      : C extends '3'
+      ? DOR<'0', '1'>
+      : C extends '4'
+      ? DOR<'1', '1'>
+      : C extends '5'
+      ? DOR<'2', '1'>
+      : C extends '6'
+      ? DOR<'3', '1'>
+      : C extends '7'
+      ? DOR<'4', '1'>
+      : C extends '8'
+      ? DOR<'5', '1'>
+      : C extends '9'
+      ? DOR<'6', '1'>
+      : DOR<'0', '0'>
+    : V extends '2'
+    ? C extends '0'
+      ? DOR<'4', '1'>
+      : C extends '1'
+      ? DOR<'5', '1'>
+      : C extends '2'
+      ? DOR<'6', '1'>
+      : C extends '3'
+      ? DOR<'7', '1'>
+      : C extends '4'
+      ? DOR<'8', '1'>
+      : C extends '5'
+      ? DOR<'9', '1'>
+      : C extends '6'
+      ? DOR<'0', '2'>
+      : C extends '7'
+      ? DOR<'1', '2'>
+      : C extends '8'
+      ? DOR<'2', '2'>
+      : C extends '9'
+      ? DOR<'3', '2'>
+      : DOR<'0', '0'>
+    : V extends '3'
+    ? C extends '0'
+      ? DOR<'1', '2'>
+      : C extends '1'
+      ? DOR<'2', '2'>
+      : C extends '2'
+      ? DOR<'3', '2'>
+      : C extends '3'
+      ? DOR<'4', '2'>
+      : C extends '4'
+      ? DOR<'5', '2'>
+      : C extends '5'
+      ? DOR<'6', '2'>
+      : C extends '6'
+      ? DOR<'7', '2'>
+      : C extends '7'
+      ? DOR<'8', '2'>
+      : C extends '8'
+      ? DOR<'9', '2'>
+      : C extends '9'
+      ? DOR<'0', '3'>
+      : DOR<'0', '0'>
+    : V extends '4'
+    ? C extends '0'
+      ? DOR<'8', '2'>
+      : C extends '1'
+      ? DOR<'9', '2'>
+      : C extends '2'
+      ? DOR<'0', '3'>
+      : C extends '3'
+      ? DOR<'1', '3'>
+      : C extends '4'
+      ? DOR<'2', '3'>
+      : C extends '5'
+      ? DOR<'3', '3'>
+      : C extends '6'
+      ? DOR<'4', '3'>
+      : C extends '7'
+      ? DOR<'5', '3'>
+      : C extends '8'
+      ? DOR<'6', '3'>
+      : C extends '9'
+      ? DOR<'7', '3'>
+      : DOR<'0', '0'>
+    : V extends '5'
+    ? C extends '0'
+      ? DOR<'5', '3'>
+      : C extends '1'
+      ? DOR<'6', '3'>
+      : C extends '2'
+      ? DOR<'7', '3'>
+      : C extends '3'
+      ? DOR<'8', '3'>
+      : C extends '4'
+      ? DOR<'9', '3'>
+      : C extends '5'
+      ? DOR<'0', '4'>
+      : C extends '6'
+      ? DOR<'1', '4'>
+      : C extends '7'
+      ? DOR<'2', '4'>
+      : C extends '8'
+      ? DOR<'3', '4'>
+      : C extends '9'
+      ? DOR<'4', '4'>
+      : DOR<'0', '0'>
+    : V extends '6'
+    ? C extends '0'
+      ? DOR<'2', '4'>
+      : C extends '1'
+      ? DOR<'3', '4'>
+      : C extends '2'
+      ? DOR<'4', '4'>
+      : C extends '3'
+      ? DOR<'5', '4'>
+      : C extends '4'
+      ? DOR<'6', '4'>
+      : C extends '5'
+      ? DOR<'7', '4'>
+      : C extends '6'
+      ? DOR<'8', '4'>
+      : C extends '7'
+      ? DOR<'9', '4'>
+      : C extends '8'
+      ? DOR<'0', '5'>
+      : C extends '9'
+      ? DOR<'1', '5'>
+      : DOR<'0', '0'>
+    : V extends '7'
+    ? C extends '0'
+      ? DOR<'9', '4'>
+      : C extends '1'
+      ? DOR<'0', '5'>
+      : C extends '2'
+      ? DOR<'1', '5'>
+      : C extends '3'
+      ? DOR<'2', '5'>
+      : C extends '4'
+      ? DOR<'3', '5'>
+      : C extends '5'
+      ? DOR<'4', '5'>
+      : C extends '6'
+      ? DOR<'5', '5'>
+      : C extends '7'
+      ? DOR<'6', '5'>
+      : C extends '8'
+      ? DOR<'7', '5'>
+      : C extends '9'
+      ? DOR<'8', '5'>
+      : DOR<'0', '0'>
+    : V extends '8'
+    ? C extends '0'
+      ? DOR<'6', '5'>
+      : C extends '1'
+      ? DOR<'7', '5'>
+      : C extends '2'
+      ? DOR<'8', '5'>
+      : C extends '3'
+      ? DOR<'9', '5'>
+      : C extends '4'
+      ? DOR<'0', '6'>
+      : C extends '5'
+      ? DOR<'1', '6'>
+      : C extends '6'
+      ? DOR<'2', '6'>
+      : C extends '7'
+      ? DOR<'3', '6'>
+      : C extends '8'
+      ? DOR<'4', '6'>
+      : C extends '9'
+      ? DOR<'5', '6'>
+      : DOR<'0', '0'>
+    : V extends '9'
+    ? C extends '0'
+      ? DOR<'3', '6'>
+      : C extends '1'
+      ? DOR<'4', '6'>
+      : C extends '2'
+      ? DOR<'5', '6'>
+      : C extends '3'
+      ? DOR<'6', '6'>
+      : C extends '4'
+      ? DOR<'7', '6'>
+      : C extends '5'
+      ? DOR<'8', '6'>
+      : C extends '6'
+      ? DOR<'9', '6'>
+      : C extends '7'
+      ? DOR<'0', '7'>
+      : C extends '8'
+      ? DOR<'1', '7'>
+      : C extends '9'
+      ? DOR<'2', '7'>
+      : DOR<'0', '0'>
+    : DOR<'0', '0'>
+  : U extends '8'
+  ? V extends '0'
+    ? C extends '0'
+      ? DOR<'0', '0'>
+      : C extends '1'
+      ? DOR<'1', '0'>
+      : C extends '2'
+      ? DOR<'2', '0'>
+      : C extends '3'
+      ? DOR<'3', '0'>
+      : C extends '4'
+      ? DOR<'4', '0'>
+      : C extends '5'
+      ? DOR<'5', '0'>
+      : C extends '6'
+      ? DOR<'6', '0'>
+      : C extends '7'
+      ? DOR<'7', '0'>
+      : C extends '8'
+      ? DOR<'8', '0'>
+      : C extends '9'
+      ? DOR<'9', '0'>
+      : DOR<'0', '0'>
+    : V extends '1'
+    ? C extends '0'
+      ? DOR<'8', '0'>
+      : C extends '1'
+      ? DOR<'9', '0'>
+      : C extends '2'
+      ? DOR<'0', '1'>
+      : C extends '3'
+      ? DOR<'1', '1'>
+      : C extends '4'
+      ? DOR<'2', '1'>
+      : C extends '5'
+      ? DOR<'3', '1'>
+      : C extends '6'
+      ? DOR<'4', '1'>
+      : C extends '7'
+      ? DOR<'5', '1'>
+      : C extends '8'
+      ? DOR<'6', '1'>
+      : C extends '9'
+      ? DOR<'7', '1'>
+      : DOR<'0', '0'>
+    : V extends '2'
+    ? C extends '0'
+      ? DOR<'6', '1'>
+      : C extends '1'
+      ? DOR<'7', '1'>
+      : C extends '2'
+      ? DOR<'8', '1'>
+      : C extends '3'
+      ? DOR<'9', '1'>
+      : C extends '4'
+      ? DOR<'0', '2'>
+      : C extends '5'
+      ? DOR<'1', '2'>
+      : C extends '6'
+      ? DOR<'2', '2'>
+      : C extends '7'
+      ? DOR<'3', '2'>
+      : C extends '8'
+      ? DOR<'4', '2'>
+      : C extends '9'
+      ? DOR<'5', '2'>
+      : DOR<'0', '0'>
+    : V extends '3'
+    ? C extends '0'
+      ? DOR<'4', '2'>
+      : C extends '1'
+      ? DOR<'5', '2'>
+      : C extends '2'
+      ? DOR<'6', '2'>
+      : C extends '3'
+      ? DOR<'7', '2'>
+      : C extends '4'
+      ? DOR<'8', '2'>
+      : C extends '5'
+      ? DOR<'9', '2'>
+      : C extends '6'
+      ? DOR<'0', '3'>
+      : C extends '7'
+      ? DOR<'1', '3'>
+      : C extends '8'
+      ? DOR<'2', '3'>
+      : C extends '9'
+      ? DOR<'3', '3'>
+      : DOR<'0', '0'>
+    : V extends '4'
+    ? C extends '0'
+      ? DOR<'2', '3'>
+      : C extends '1'
+      ? DOR<'3', '3'>
+      : C extends '2'
+      ? DOR<'4', '3'>
+      : C extends '3'
+      ? DOR<'5', '3'>
+      : C extends '4'
+      ? DOR<'6', '3'>
+      : C extends '5'
+      ? DOR<'7', '3'>
+      : C extends '6'
+      ? DOR<'8', '3'>
+      : C extends '7'
+      ? DOR<'9', '3'>
+      : C extends '8'
+      ? DOR<'0', '4'>
+      : C extends '9'
+      ? DOR<'1', '4'>
+      : DOR<'0', '0'>
+    : V extends '5'
+    ? C extends '0'
+      ? DOR<'0', '4'>
+      : C extends '1'
+      ? DOR<'1', '4'>
+      : C extends '2'
+      ? DOR<'2', '4'>
+      : C extends '3'
+      ? DOR<'3', '4'>
+      : C extends '4'
+      ? DOR<'4', '4'>
+      : C extends '5'
+      ? DOR<'5', '4'>
+      : C extends '6'
+      ? DOR<'6', '4'>
+      : C extends '7'
+      ? DOR<'7', '4'>
+      : C extends '8'
+      ? DOR<'8', '4'>
+      : C extends '9'
+      ? DOR<'9', '4'>
+      : DOR<'0', '0'>
+    : V extends '6'
+    ? C extends '0'
+      ? DOR<'8', '4'>
+      : C extends '1'
+      ? DOR<'9', '4'>
+      : C extends '2'
+      ? DOR<'0', '5'>
+      : C extends '3'
+      ? DOR<'1', '5'>
+      : C extends '4'
+      ? DOR<'2', '5'>
+      : C extends '5'
+      ? DOR<'3', '5'>
+      : C extends '6'
+      ? DOR<'4', '5'>
+      : C extends '7'
+      ? DOR<'5', '5'>
+      : C extends '8'
+      ? DOR<'6', '5'>
+      : C extends '9'
+      ? DOR<'7', '5'>
+      : DOR<'0', '0'>
+    : V extends '7'
+    ? C extends '0'
+      ? DOR<'6', '5'>
+      : C extends '1'
+      ? DOR<'7', '5'>
+      : C extends '2'
+      ? DOR<'8', '5'>
+      : C extends '3'
+      ? DOR<'9', '5'>
+      : C extends '4'
+      ? DOR<'0', '6'>
+      : C extends '5'
+      ? DOR<'1', '6'>
+      : C extends '6'
+      ? DOR<'2', '6'>
+      : C extends '7'
+      ? DOR<'3', '6'>
+      : C extends '8'
+      ? DOR<'4', '6'>
+      : C extends '9'
+      ? DOR<'5', '6'>
+      : DOR<'0', '0'>
+    : V extends '8'
+    ? C extends '0'
+      ? DOR<'4', '6'>
+      : C extends '1'
+      ? DOR<'5', '6'>
+      : C extends '2'
+      ? DOR<'6', '6'>
+      : C extends '3'
+      ? DOR<'7', '6'>
+      : C extends '4'
+      ? DOR<'8', '6'>
+      : C extends '5'
+      ? DOR<'9', '6'>
+      : C extends '6'
+      ? DOR<'0', '7'>
+      : C extends '7'
+      ? DOR<'1', '7'>
+      : C extends '8'
+      ? DOR<'2', '7'>
+      : C extends '9'
+      ? DOR<'3', '7'>
+      : DOR<'0', '0'>
+    : V extends '9'
+    ? C extends '0'
+      ? DOR<'2', '7'>
+      : C extends '1'
+      ? DOR<'3', '7'>
+      : C extends '2'
+      ? DOR<'4', '7'>
+      : C extends '3'
+      ? DOR<'5', '7'>
+      : C extends '4'
+      ? DOR<'6', '7'>
+      : C extends '5'
+      ? DOR<'7', '7'>
+      : C extends '6'
+      ? DOR<'8', '7'>
+      : C extends '7'
+      ? DOR<'9', '7'>
+      : C extends '8'
+      ? DOR<'0', '8'>
+      : C extends '9'
+      ? DOR<'1', '8'>
+      : DOR<'0', '0'>
+    : DOR<'0', '0'>
+  : U extends '9'
+  ? V extends '0'
+    ? C extends '0'
+      ? DOR<'0', '0'>
+      : C extends '1'
+      ? DOR<'1', '0'>
+      : C extends '2'
+      ? DOR<'2', '0'>
+      : C extends '3'
+      ? DOR<'3', '0'>
+      : C extends '4'
+      ? DOR<'4', '0'>
+      : C extends '5'
+      ? DOR<'5', '0'>
+      : C extends '6'
+      ? DOR<'6', '0'>
+      : C extends '7'
+      ? DOR<'7', '0'>
+      : C extends '8'
+      ? DOR<'8', '0'>
+      : C extends '9'
+      ? DOR<'9', '0'>
+      : DOR<'0', '0'>
+    : V extends '1'
+    ? C extends '0'
+      ? DOR<'9', '0'>
+      : C extends '1'
+      ? DOR<'0', '1'>
+      : C extends '2'
+      ? DOR<'1', '1'>
+      : C extends '3'
+      ? DOR<'2', '1'>
+      : C extends '4'
+      ? DOR<'3', '1'>
+      : C extends '5'
+      ? DOR<'4', '1'>
+      : C extends '6'
+      ? DOR<'5', '1'>
+      : C extends '7'
+      ? DOR<'6', '1'>
+      : C extends '8'
+      ? DOR<'7', '1'>
+      : C extends '9'
+      ? DOR<'8', '1'>
+      : DOR<'0', '0'>
+    : V extends '2'
+    ? C extends '0'
+      ? DOR<'8', '1'>
+      : C extends '1'
+      ? DOR<'9', '1'>
+      : C extends '2'
+      ? DOR<'0', '2'>
+      : C extends '3'
+      ? DOR<'1', '2'>
+      : C extends '4'
+      ? DOR<'2', '2'>
+      : C extends '5'
+      ? DOR<'3', '2'>
+      : C extends '6'
+      ? DOR<'4', '2'>
+      : C extends '7'
+      ? DOR<'5', '2'>
+      : C extends '8'
+      ? DOR<'6', '2'>
+      : C extends '9'
+      ? DOR<'7', '2'>
+      : DOR<'0', '0'>
+    : V extends '3'
+    ? C extends '0'
+      ? DOR<'7', '2'>
+      : C extends '1'
+      ? DOR<'8', '2'>
+      : C extends '2'
+      ? DOR<'9', '2'>
+      : C extends '3'
+      ? DOR<'0', '3'>
+      : C extends '4'
+      ? DOR<'1', '3'>
+      : C extends '5'
+      ? DOR<'2', '3'>
+      : C extends '6'
+      ? DOR<'3', '3'>
+      : C extends '7'
+      ? DOR<'4', '3'>
+      : C extends '8'
+      ? DOR<'5', '3'>
+      : C extends '9'
+      ? DOR<'6', '3'>
+      : DOR<'0', '0'>
+    : V extends '4'
+    ? C extends '0'
+      ? DOR<'6', '3'>
+      : C extends '1'
+      ? DOR<'7', '3'>
+      : C extends '2'
+      ? DOR<'8', '3'>
+      : C extends '3'
+      ? DOR<'9', '3'>
+      : C extends '4'
+      ? DOR<'0', '4'>
+      : C extends '5'
+      ? DOR<'1', '4'>
+      : C extends '6'
+      ? DOR<'2', '4'>
+      : C extends '7'
+      ? DOR<'3', '4'>
+      : C extends '8'
+      ? DOR<'4', '4'>
+      : C extends '9'
+      ? DOR<'5', '4'>
+      : DOR<'0', '0'>
+    : V extends '5'
+    ? C extends '0'
+      ? DOR<'5', '4'>
+      : C extends '1'
+      ? DOR<'6', '4'>
+      : C extends '2'
+      ? DOR<'7', '4'>
+      : C extends '3'
+      ? DOR<'8', '4'>
+      : C extends '4'
+      ? DOR<'9', '4'>
+      : C extends '5'
+      ? DOR<'0', '5'>
+      : C extends '6'
+      ? DOR<'1', '5'>
+      : C extends '7'
+      ? DOR<'2', '5'>
+      : C extends '8'
+      ? DOR<'3', '5'>
+      : C extends '9'
+      ? DOR<'4', '5'>
+      : DOR<'0', '0'>
+    : V extends '6'
+    ? C extends '0'
+      ? DOR<'4', '5'>
+      : C extends '1'
+      ? DOR<'5', '5'>
+      : C extends '2'
+      ? DOR<'6', '5'>
+      : C extends '3'
+      ? DOR<'7', '5'>
+      : C extends '4'
+      ? DOR<'8', '5'>
+      : C extends '5'
+      ? DOR<'9', '5'>
+      : C extends '6'
+      ? DOR<'0', '6'>
+      : C extends '7'
+      ? DOR<'1', '6'>
+      : C extends '8'
+      ? DOR<'2', '6'>
+      : C extends '9'
+      ? DOR<'3', '6'>
+      : DOR<'0', '0'>
+    : V extends '7'
+    ? C extends '0'
+      ? DOR<'3', '6'>
+      : C extends '1'
+      ? DOR<'4', '6'>
+      : C extends '2'
+      ? DOR<'5', '6'>
+      : C extends '3'
+      ? DOR<'6', '6'>
+      : C extends '4'
+      ? DOR<'7', '6'>
+      : C extends '5'
+      ? DOR<'8', '6'>
+      : C extends '6'
+      ? DOR<'9', '6'>
+      : C extends '7'
+      ? DOR<'0', '7'>
+      : C extends '8'
+      ? DOR<'1', '7'>
+      : C extends '9'
+      ? DOR<'2', '7'>
+      : DOR<'0', '0'>
+    : V extends '8'
+    ? C extends '0'
+      ? DOR<'2', '7'>
+      : C extends '1'
+      ? DOR<'3', '7'>
+      : C extends '2'
+      ? DOR<'4', '7'>
+      : C extends '3'
+      ? DOR<'5', '7'>
+      : C extends '4'
+      ? DOR<'6', '7'>
+      : C extends '5'
+      ? DOR<'7', '7'>
+      : C extends '6'
+      ? DOR<'8', '7'>
+      : C extends '7'
+      ? DOR<'9', '7'>
+      : C extends '8'
+      ? DOR<'0', '8'>
+      : C extends '9'
+      ? DOR<'1', '8'>
+      : DOR<'0', '0'>
+    : V extends '9'
+    ? C extends '0'
+      ? DOR<'1', '8'>
+      : C extends '1'
+      ? DOR<'2', '8'>
+      : C extends '2'
+      ? DOR<'3', '8'>
+      : C extends '3'
+      ? DOR<'4', '8'>
+      : C extends '4'
+      ? DOR<'5', '8'>
+      : C extends '5'
+      ? DOR<'6', '8'>
+      : C extends '6'
+      ? DOR<'7', '8'>
+      : C extends '7'
+      ? DOR<'8', '8'>
+      : C extends '8'
+      ? DOR<'9', '8'>
+      : C extends '9'
+      ? DOR<'0', '9'>
+      : DOR<'0', '0'>
+    : DOR<'0', '0'>
+  : DOR<'0', '0'>
