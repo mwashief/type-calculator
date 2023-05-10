@@ -17,11 +17,11 @@ type ToDigitArray<T extends string> = StringTokenizeTail<
     ]
   : []
 
-type ToString<U extends DigitArray> = U extends [
+type DigitArrayToString<U extends DigitArray> = U extends [
   ...infer Rest extends DigitArray,
   infer Msb extends Digit
 ]
-  ? `${Msb}${ToString<Rest>}`
+  ? `${Msb}${DigitArrayToString<Rest>}`
   : ''
 
 type HasLessDigits<
@@ -102,6 +102,16 @@ type IsEqualDigitArray<
     ? true
     : false
   : false
+
+type MaxDigitArray<
+  U extends DigitArray,
+  V extends DigitArray
+> = IsLessThanDigitArray<U, V> extends true ? V : U
+
+type MinDigitArray<
+  U extends DigitArray,
+  V extends DigitArray
+> = IsLessThanDigitArray<U, V> extends true ? U : V
 
 type AddDigitArrayUtil<
   UU extends DigitArray,
@@ -201,3 +211,11 @@ type MultiplyDigitArray<
   U extends DigitArray,
   V extends DigitArray
 > = MultiplyDigitArrayUtil<U, V>
+
+type DivideDigitArrayTrivialUtil<
+  UU extends DigitArray,
+  VV extends DigitArray,
+  P extends DigitArray = [],
+  U extends DigitArray = SanitizeDigitArray<UU>,
+  V extends DigitArray = SanitizeDigitArray<VV>
+> = never

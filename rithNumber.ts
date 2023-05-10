@@ -1,7 +1,16 @@
 type Sign = '+' | '-' | '*'
 type NumberSign = '+' | '-'
 type Operation = 'add' | 'subtract' | 'multiply'
-type ToRithNumber<T extends string> = StringTokenizeHead<
+
+// Signed Integer
+type RithNumber = { integral: DigitArray; sign: NumberSign }
+
+type SanitizeRithNumber<T extends RithNumber> = {
+  integral: SanitizeDigitArray<T['integral']>
+  sign: SanitizeDigitArray<T['integral']>['length'] extends 0 ? '+' : T['sign']
+}
+
+type StringToRithNumber<T extends string> = StringTokenizeHead<
   T,
   NumberSign
 >[0] extends NumberSign
@@ -11,22 +20,50 @@ type ToRithNumber<T extends string> = StringTokenizeHead<
     }
   : { sign: '+'; integral: ToDigitArray<T> }
 
-// Signed Integer
-type RithNumber = { integral: DigitArray; sign: NumberSign }
-type SanitizeRithNumber<T extends RithNumber> = {
-  integral: SanitizeDigitArray<T['integral']>
-  sign: SanitizeDigitArray<T['integral']>['length'] extends 0 ? '+' : T['sign']
-}
+type ToRithNumber<T extends string | number> = T extends string
+  ? StringToRithNumber<T>
+  : `${T}` extends `${infer X}${'.'}${infer _}`
+  ? StringToRithNumber<X>
+  : StringToRithNumber<`${T}`>
 
-type AddRithNumber<U extends RithNumber, V extends RithNumber> = V
+type RithNumberToString<
+  UU extends RithNumber,
+  U extends RithNumber = SanitizeRithNumber<UU>
+> = `${U['sign'] extends '-' ? '-' : ''}${DigitArrayToString<U['integral']>}`
+
+type RithNumberToNumber<
+  UU extends RithNumber,
+  U extends RithNumber = SanitizeRithNumber<UU>
+> = `${U['sign'] extends '-' ? '-' : ''}${DigitArrayToString<
+  U['integral']
+>}` extends `${infer num extends number}`
+  ? num
+  : never
+
+type AddRithNumber<
+  U extends RithNumber,
+  V extends RithNumber
+> = U['sign'] extends '+'
+  ? V['sign'] extends '+'
+    ? { sign: '+'; integral: AddDigitArray<U['integral'], V['integral']> }
+    : IsGreaterThanOrEqualDigitArray<U['integral'], V['integral']> extends true
+    ? { sign: '+'; integral: SubtractDigitArray<U['integral'], V['integral']> }
+    : { sign: '-'; integral: SubtractDigitArray<V['integral'], U['integral']> }
+  : V['sign'] extends '-'
+  ? { sign: '-'; integral: AddDigitArray<U['integral'], V['integral']> }
+  : IsGreaterThanOrEqualDigitArray<V['integral'], U['integral']> extends true
+  ? { sign: '+'; integral: SubtractDigitArray<V['integral'], U['integral']> }
+  : { sign: '-'; integral: SubtractDigitArray<U['integral'], V['integral']> }
+
 type SubtractRithNumber<
   U extends RithNumber,
   V extends RithNumber
-> = V['sign'] extends '-'
-  ? AddRithNumber<{ sign: '+'; integral: V['integral'] }, U>
-  : V
+> = AddRithNumber<
+  U,
+  { sign: V['sign'] extends '+' ? '-' : '+'; integral: V['integral'] }
+>
 
-type kk = never extends Digit ? true : false
-type k = StringTokenizeHead<'+56', NumberSign>
-type num = ToRithNumber<''>
-//    ^?
+type MultiplyRithNumber<U extends RithNumber, V extends RithNumber> = {
+  sign: V['sign'] extends U['sign'] ? '+' : '-'
+  integral: MultiplyDigitArray<U['integral'], V['integral']>
+}
