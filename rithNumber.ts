@@ -38,7 +38,7 @@ type RithNumberToNumber<
   U['integral']
 >}` extends `${infer num extends number}`
   ? num
-  : never
+  : 0
 
 type AddRithNumber<
   U extends RithNumber,
