@@ -115,15 +115,15 @@ type AddDigitArray<
   U extends DigitArray,
   V extends DigitArray,
   Carry extends Digit = '0'
-> = U extends [infer First1 extends Digit, ...infer Rest1 extends DigitArray]
-  ? V extends [infer First2 extends Digit, ...infer Rest2 extends DigitArray]
+> = U extends [infer FirstU extends Digit, ...infer RestU extends DigitArray]
+  ? V extends [infer FirstV extends Digit, ...infer RestV extends DigitArray]
     ? [
-        AddDigit<First1, First2, Carry>['val'],
-        ...AddDigitArray<Rest1, Rest2, AddDigit<First1, First2, Carry>['carry']>
+        AddDigit<FirstU, FirstV, Carry>['val'],
+        ...AddDigitArray<RestU, RestV, AddDigit<FirstU, FirstV, Carry>['carry']>
       ]
     : [
-        AddDigit<First1, '0', Carry>['val'],
-        ...AddDigitArray<Rest1, V, AddDigit<First1, '0', Carry>['carry']>
+        AddDigit<FirstU, '0', Carry>['val'],
+        ...AddDigitArray<RestU, V, AddDigit<FirstU, '0', Carry>['carry']>
       ]
   : V extends [infer First3 extends Digit, ...infer Rest3 extends DigitArray]
   ? [
@@ -138,22 +138,24 @@ type SubtractDigitArray<
   U extends DigitArray,
   V extends DigitArray,
   Carry extends Digit = '0'
-> = U extends [infer First1 extends Digit, ...infer Rest1 extends DigitArray]
-  ? V extends [infer First2 extends Digit, ...infer Rest2 extends DigitArray]
+> = IsGreaterThanDigitArray<V, U> extends true
+  ? never
+  : U extends [infer FirstU extends Digit, ...infer RestU extends DigitArray]
+  ? V extends [infer FirstV extends Digit, ...infer RestV extends DigitArray]
     ? [
-        SubtractDigit<First1, First2, Carry>['val'],
+        SubtractDigit<FirstU, FirstV, Carry>['val'],
         ...SubtractDigitArray<
-          Rest1,
-          Rest2,
-          SubtractDigit<First1, First2, Carry>['carry']
+          RestU,
+          RestV,
+          SubtractDigit<FirstU, FirstV, Carry>['carry']
         >
       ]
     : [
-        SubtractDigit<First1, '0', Carry>['val'],
+        SubtractDigit<FirstU, '0', Carry>['val'],
         ...SubtractDigitArray<
-          Rest1,
+          RestU,
           V,
-          SubtractDigit<First1, '0', Carry>['carry']
+          SubtractDigit<FirstU, '0', Carry>['carry']
         >
       ]
   : V extends [infer First3 extends Digit, ...infer Rest3 extends DigitArray]
@@ -168,4 +170,3 @@ type SubtractDigitArray<
   : Carry extends '0'
   ? []
   : [Carry]
-//   ^?
