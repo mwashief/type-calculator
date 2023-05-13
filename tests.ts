@@ -28,3 +28,4 @@ type Test27 = Expecting<Equal<Multiply<-9568140, 7273316>, -69592105752240>>
 type Test28 = Expecting<Equal<Add<-9070050, -8269939>, -17339989>>
 type Test29 = Expecting<Equal<Subtract<-9070050, -8269939>, -800111>>
 type Test30 = Expecting<Equal<Multiply<-9070050, -8269939>, 75008760226950>>
+type test31 = Expecting<Equal<Eval<'-4+5(3-2)', {}>, 1>>

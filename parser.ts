@@ -61,37 +61,37 @@ type Tokenize<
     : []
   : []
 
-type CalcUtil<E extends MathToken[]> = E extends [
+type CalcArith<E extends MathToken[]> = E extends [
   infer Op1 extends ArithSign,
   infer Op2 extends ArithSign,
   ...infer Right extends MathToken[]
 ]
-  ? CalcUtil<[Op2 extends '-' ? Exclude<ArithSign, Op1> : Op1, ...Right]>
+  ? CalcArith<[Op2 extends '-' ? Exclude<ArithSign, Op1> : Op1, ...Right]>
   : E extends [
       infer N extends MathToken,
       infer Op1 extends ArithSign,
       infer Op2 extends ArithSign,
       ...infer Right extends MathToken[]
     ]
-  ? CalcUtil<[N, Op2 extends '-' ? Exclude<ArithSign, Op1> : Op1, ...Right]>
+  ? CalcArith<[N, Op2 extends '-' ? Exclude<ArithSign, Op1> : Op1, ...Right]>
   : E extends [
       infer Op1 extends OperandToken,
       infer Op extends ArithSign,
       infer Op2 extends OperandToken,
       ...infer Right extends MathToken[]
     ]
-  ? CalcUtil<[Op extends '+' ? Add<Op1, Op2> : Subtract<Op1, Op2>, ...Right]>
+  ? CalcArith<[Op extends '+' ? Add<Op1, Op2> : Subtract<Op1, Op2>, ...Right]>
   : E extends [
       infer Op extends ArithSign,
       infer Op2 extends OperandToken,
       ...infer Right extends MathToken[]
     ]
-  ? CalcUtil<[Op extends '+' ? Add<0, Op2> : Subtract<0, Op2>, ...Right]>
+  ? CalcArith<[Op extends '+' ? Add<0, Op2> : Subtract<0, Op2>, ...Right]>
   : E extends [infer Res extends OperandToken]
   ? `${Res}`
   : never
 
-type HandleMul<S extends MathToken[], U extends MathToken[] = []> = S extends [
+type CalcMul<S extends MathToken[], U extends MathToken[] = []> = S extends [
   '*',
   infer Op2 extends OperandToken,
   ...infer Rest extends MathToken[]
@@ -100,11 +100,11 @@ type HandleMul<S extends MathToken[], U extends MathToken[] = []> = S extends [
       ...infer FirstU extends MathToken[],
       infer Op1 extends OperandToken
     ]
-    ? HandleMul<Rest, [...FirstU, Multiply<Op1, Op2>]>
+    ? CalcMul<Rest, [...FirstU, Multiply<Op1, Op2>]>
     : never
   : S extends [infer First extends MathToken, ...infer Rest extends MathToken[]]
-  ? HandleMul<Rest, [...U, First]>
-  : CalcUtil<U>
+  ? CalcMul<Rest, [...U, First]>
+  : CalcArith<U>
 
 type Calc<
   S extends MathToken[],
@@ -123,17 +123,17 @@ type Calc<
         ]
       >
     : First extends EndingBracket
-    ? Calc<
-        Rest,
-        [...StackPop<Stack>[1], HandleMul<Current>],
-        StackPop<Stack>[0]
-      >
+    ? Calc<Rest, [...StackPop<Stack>[1], CalcMul<Current>], StackPop<Stack>[0]>
     : Calc<Rest, [...Current, First], Stack>
-  : HandleMul<Current>
+  : CalcMul<Current>
 
 type Eval<
   S extends string,
   SymbolTable extends {
     [key in IdentifiersUsed<SanitizeExpression<S>>]: OperandToken
   }
-> = Calc<Tokenize<SanitizeExpression<S>, SymbolTable>>
+> = Calc<
+  Tokenize<SanitizeExpression<S>, SymbolTable>
+> extends `${infer Res extends number}`
+  ? Res
+  : never
