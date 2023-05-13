@@ -42,7 +42,9 @@ type MatchLongestPrefix<S extends string> =
 
 type Tokenize<
   S extends string,
-  SymbolTable extends { [key in IdentifiersUsed<S>]: OperandToken }
+  SymbolTable extends { [key in IdentifiersUsed<S>]: OperandToken } = {
+    [key in IdentifiersUsed<S>]: OperandToken
+  }
 > = S extends `${MatchLongestPrefix<S>}${infer Rest}`
   ? S extends `${infer Token}${Rest}`
     ? [
@@ -59,34 +61,34 @@ type Tokenize<
     : []
   : []
 
-type EvalUtil<E extends MathToken[]> = E extends [
+type CalcUtil<E extends MathToken[]> = E extends [
   infer Op1 extends ArithSign,
   infer Op2 extends ArithSign,
   ...infer Right extends MathToken[]
 ]
-  ? EvalUtil<[Op2 extends '-' ? Exclude<ArithSign, Op1> : Op1, ...Right]>
+  ? CalcUtil<[Op2 extends '-' ? Exclude<ArithSign, Op1> : Op1, ...Right]>
   : E extends [
       infer N extends MathToken,
       infer Op1 extends ArithSign,
       infer Op2 extends ArithSign,
       ...infer Right extends MathToken[]
     ]
-  ? EvalUtil<[N, Op2 extends '-' ? Exclude<ArithSign, Op1> : Op1, ...Right]>
+  ? CalcUtil<[N, Op2 extends '-' ? Exclude<ArithSign, Op1> : Op1, ...Right]>
   : E extends [
       infer Op1 extends OperandToken,
       infer Op extends ArithSign,
       infer Op2 extends OperandToken,
       ...infer Right extends MathToken[]
     ]
-  ? EvalUtil<[Op extends '+' ? Add<Op1, Op2> : Subtract<Op1, Op2>, ...Right]>
+  ? CalcUtil<[Op extends '+' ? Add<Op1, Op2> : Subtract<Op1, Op2>, ...Right]>
   : E extends [
       infer Op extends ArithSign,
       infer Op2 extends OperandToken,
       ...infer Right extends MathToken[]
     ]
-  ? EvalUtil<[Op extends '+' ? Add<0, Op2> : Subtract<0, Op2>, ...Right]>
-  : E extends [infer Res]
-  ? Res
+  ? CalcUtil<[Op extends '+' ? Add<0, Op2> : Subtract<0, Op2>, ...Right]>
+  : E extends [infer Res extends OperandToken]
+  ? `${Res}`
   : never
 
 type HandleMul<S extends MathToken[], U extends MathToken[] = []> = S extends [
@@ -102,15 +104,15 @@ type HandleMul<S extends MathToken[], U extends MathToken[] = []> = S extends [
     : never
   : S extends [infer First extends MathToken, ...infer Rest extends MathToken[]]
   ? HandleMul<Rest, [...U, First]>
-  : EvalUtil<U>
+  : CalcUtil<U>
 
-type Eval<
+type Calc<
   S extends MathToken[],
   Current extends MathToken[] = [],
   Stack extends MathToken[][] = []
 > = S extends [infer First extends MathToken, ...infer Rest extends MathToken[]]
   ? First extends StartingBracket
-    ? Eval<
+    ? Calc<
         Rest,
         [],
         [
@@ -121,27 +123,17 @@ type Eval<
         ]
       >
     : First extends EndingBracket
-    ? Eval<
+    ? Calc<
         Rest,
         [...StackPop<Stack>[1], HandleMul<Current>],
         StackPop<Stack>[0]
       >
-    : Eval<Rest, [...Current, First], Stack>
+    : Calc<Rest, [...Current, First], Stack>
   : HandleMul<Current>
 
-//'24+al+jg*54+u8.ki'
-type UnsanitizedEx = '-5*2 + 4 (1 -8) * u'
-type Ex = SanitizeExpression<UnsanitizedEx>
-//   ^?
-type Tt = TokenType<Ex>
-//   ^?
-type T = MatchLongestPrefix<Ex>
-//   ^?
-type Iu = IdentifiersUsed<Ex>
-//   ^?
-type St = { [key in Iu]: 2 }
-//   ^?
-type c = Tokenize<Ex, St>
-//   ^?
-type k = Eval<c>
-//   ^?
+type Eval<
+  S extends string,
+  SymbolTable extends {
+    [key in IdentifiersUsed<SanitizeExpression<S>>]: OperandToken
+  }
+> = Calc<Tokenize<SanitizeExpression<S>, SymbolTable>>

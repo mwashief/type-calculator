@@ -58,8 +58,8 @@ type StartingChar =
   | 'Y'
   | 'Z'
   | '_'
-type StartingBracket = '(' | '{'
-type EndingBracket = ')' | '}'
+type StartingBracket = '('
+type EndingBracket = ')'
 type Bracket = StartingBracket | EndingBracket
 type WhiteSpace = ' ' | '\n' | '\t'
 type MathToken = OperandToken | Bracket | Sign
