@@ -16,9 +16,9 @@ type StringTokenizeTail<
     : [S, '']
   : [S, '']
 
-type StackPop<S extends string[][]> = S extends [
-  ...infer First extends string[][],
-  infer Last extends string[]
+type StackPop<S extends MathToken[][]> = S extends [
+  ...infer First extends MathToken[][],
+  infer Last extends MathToken[]
 ]
   ? [First, Last]
   : never

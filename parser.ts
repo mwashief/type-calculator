@@ -1,67 +1,3 @@
-type Operation = 'add' | 'subtract' | 'multiply'
-type ArithSign = '+' | '-'
-type MultSign = '*'
-type Sign = ArithSign | MultSign
-type SpecialSymbol = '/' | '?' | ':'
-type StartingChar =
-  | 'a'
-  | 'b'
-  | 'c'
-  | 'd'
-  | 'e'
-  | 'f'
-  | 'g'
-  | 'h'
-  | 'i'
-  | 'j'
-  | 'k'
-  | 'l'
-  | 'm'
-  | 'n'
-  | 'o'
-  | 'p'
-  | 'q'
-  | 'r'
-  | 's'
-  | 't'
-  | 'u'
-  | 'v'
-  | 'w'
-  | 'x'
-  | 'y'
-  | 'z'
-  | 'A'
-  | 'B'
-  | 'C'
-  | 'D'
-  | 'E'
-  | 'F'
-  | 'G'
-  | 'H'
-  | 'I'
-  | 'J'
-  | 'K'
-  | 'L'
-  | 'M'
-  | 'N'
-  | 'O'
-  | 'P'
-  | 'Q'
-  | 'R'
-  | 'S'
-  | 'T'
-  | 'U'
-  | 'V'
-  | 'W'
-  | 'X'
-  | 'Y'
-  | 'Z'
-  | '_'
-type StartingBracket = '(' | '{'
-type EndingBracket = ')' | '}'
-type Bracket = StartingBracket | EndingBracket
-type WhiteSpace = ' ' | '\n' | '\t'
-
 type SanitizeExpression<S extends string> =
   S extends `${infer First}${infer Rest}`
     ? First extends WhiteSpace
@@ -84,15 +20,11 @@ type IdentifiersUsed<
   ? never
   : Current
 
-type TokenType<S extends string> =
-  | `${number}`
-  | Bracket
-  | IdentifiersUsed<S>
-  | Sign
+type TokenType<S extends string> = MathToken | IdentifiersUsed<S>
 
 type MatchLongestPrefixUtil<
   S extends string,
-  T extends string,
+  T,
   Seen extends string = '',
   Token extends string = ''
 > = S extends `${infer First}${infer Last}`
@@ -110,11 +42,11 @@ type MatchLongestPrefix<S extends string> =
 
 type Tokenize<
   S extends string,
-  SymbolTable extends { [key in IdentifiersUsed<S>]: `${number}` | number }
+  SymbolTable extends { [key in IdentifiersUsed<S>]: OperandToken }
 > = S extends `${MatchLongestPrefix<S>}${infer Rest}`
   ? S extends `${infer Token}${Rest}`
     ? [
-        Token extends keyof SymbolTable ? `${SymbolTable[Token]}` : Token,
+        Token extends IdentifiersUsed<S> ? `${SymbolTable[Token]}` : Token,
         ...Tokenize<
           Rest,
           {
@@ -127,53 +59,56 @@ type Tokenize<
     : []
   : []
 
-type EvalUtil<E extends string[]> = E extends [
+type EvalUtil<E extends MathToken[]> = E extends [
   infer Op1 extends ArithSign,
   infer Op2 extends ArithSign,
-  ...infer Right extends string[]
+  ...infer Right extends MathToken[]
 ]
   ? EvalUtil<[Op2 extends '-' ? Exclude<ArithSign, Op1> : Op1, ...Right]>
   : E extends [
-      infer N extends string,
+      infer N extends MathToken,
       infer Op1 extends ArithSign,
       infer Op2 extends ArithSign,
-      ...infer Right extends string[]
+      ...infer Right extends MathToken[]
     ]
   ? EvalUtil<[N, Op2 extends '-' ? Exclude<ArithSign, Op1> : Op1, ...Right]>
   : E extends [
-      infer Op1 extends string,
+      infer Op1 extends OperandToken,
       infer Op extends ArithSign,
-      infer Op2 extends string,
-      ...infer Right extends string[]
+      infer Op2 extends OperandToken,
+      ...infer Right extends MathToken[]
     ]
   ? EvalUtil<[Op extends '+' ? Add<Op1, Op2> : Subtract<Op1, Op2>, ...Right]>
   : E extends [
       infer Op extends ArithSign,
-      infer Op2 extends string,
-      ...infer Right extends string[]
+      infer Op2 extends OperandToken,
+      ...infer Right extends MathToken[]
     ]
   ? EvalUtil<[Op extends '+' ? Add<0, Op2> : Subtract<0, Op2>, ...Right]>
   : E extends [infer Res]
   ? Res
   : never
 
-type HandleMul<S extends string[], U extends string[] = []> = S extends [
+type HandleMul<S extends MathToken[], U extends MathToken[] = []> = S extends [
   '*',
-  infer Op2 extends string,
-  ...infer Rest extends string[]
+  infer Op2 extends OperandToken,
+  ...infer Rest extends MathToken[]
 ]
-  ? U extends [...infer FirstU extends string[], infer Op1 extends string]
+  ? U extends [
+      ...infer FirstU extends MathToken[],
+      infer Op1 extends OperandToken
+    ]
     ? HandleMul<Rest, [...FirstU, Multiply<Op1, Op2>]>
     : never
-  : S extends [infer First extends string, ...infer Rest extends string[]]
+  : S extends [infer First extends MathToken, ...infer Rest extends MathToken[]]
   ? HandleMul<Rest, [...U, First]>
   : EvalUtil<U>
 
 type Eval<
-  S extends string[],
-  Current extends string[] = [],
-  Stack extends string[][] = []
-> = S extends [infer First extends string, ...infer Rest extends string[]]
+  S extends MathToken[],
+  Current extends MathToken[] = [],
+  Stack extends MathToken[][] = []
+> = S extends [infer First extends MathToken, ...infer Rest extends MathToken[]]
   ? First extends StartingBracket
     ? Eval<
         Rest,
@@ -193,3 +128,20 @@ type Eval<
       >
     : Eval<Rest, [...Current, First], Stack>
   : HandleMul<Current>
+
+//'24+al+jg*54+u8.ki'
+type UnsanitizedEx = '-5*2 + 4 (1 -8) * u'
+type Ex = SanitizeExpression<UnsanitizedEx>
+//   ^?
+type Tt = TokenType<Ex>
+//   ^?
+type T = MatchLongestPrefix<Ex>
+//   ^?
+type Iu = IdentifiersUsed<Ex>
+//   ^?
+type St = { [key in Iu]: 2 }
+//   ^?
+type c = Tokenize<Ex, St>
+//   ^?
+type k = Eval<c>
+//   ^?

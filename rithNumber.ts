@@ -18,7 +18,7 @@ type StringToRithNumber<T extends string> = StringTokenizeHead<
     }
   : { sign: '+'; integral: ToDigitArray<T> }
 
-type ToRithNumber<T extends string | number> = T extends string
+type ToRithNumber<T extends `${number}` | number> = T extends string
   ? StringToRithNumber<T>
   : `${T}` extends `${infer X}${'.'}${infer _}`
   ? StringToRithNumber<X>
