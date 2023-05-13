@@ -60,6 +60,14 @@ type StartingChar =
 type StartingBracket = '(' | '{'
 type EndingBracket = ')' | '}'
 type Bracket = StartingBracket | EndingBracket
+type WhiteSpace = ' ' | '\n' | '\t'
+
+type SanitizeExpression<S extends string> =
+  S extends `${infer First}${infer Rest}`
+    ? First extends WhiteSpace
+      ? SanitizeExpression<Rest>
+      : `${First}${SanitizeExpression<Rest>}`
+    : ''
 
 type IdentifiersUsed<
   S extends string,
@@ -167,7 +175,16 @@ type Eval<
   Stack extends string[][] = []
 > = S extends [infer First extends string, ...infer Rest extends string[]]
   ? First extends StartingBracket
-    ? Eval<Rest, [], [...Stack, Current]>
+    ? Eval<
+        Rest,
+        [],
+        [
+          ...Stack,
+          Current extends [...infer _, `${number}`]
+            ? [...Current, '*']
+            : Current
+        ]
+      >
     : First extends EndingBracket
     ? Eval<
         Rest,
