@@ -1,6 +1,4 @@
-type Sign = '+' | '-' | '*'
 type NumberSign = '+' | '-'
-type Operation = 'add' | 'subtract' | 'multiply'
 
 // Signed Integer
 type RithNumber = { integral: DigitArray; sign: NumberSign }
