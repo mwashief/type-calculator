@@ -5,22 +5,24 @@ type SanitizeExpression<S extends string> =
       : `${First}${SanitizeExpression<Rest>}`
     : ''
 
-type IdentifiersUsed<
+type IdentifiersUsedUtil<
   S extends string,
   Current extends string = ''
 > = S extends `${infer Start extends StartingChar}${infer Rest}`
-  ? IdentifiersUsed<Rest, `${Current}${Start}`>
+  ? IdentifiersUsedUtil<Rest, `${Current}${Start}`>
   : S extends `${infer Head}${infer Tail}`
   ? Head extends `${number}` | '.'
-    ? IdentifiersUsed<Tail, Current extends '' ? '' : `${Current}${Head}`>
+    ? IdentifiersUsedUtil<Tail, Current extends '' ? '' : `${Current}${Head}`>
     : Current extends ''
-    ? IdentifiersUsed<Tail>
-    : Current | IdentifiersUsed<Tail>
+    ? IdentifiersUsedUtil<Tail>
+    : [Current, ...IdentifiersUsedUtil<Tail>]
   : Current extends ''
-  ? never
-  : Current
+  ? []
+  : [Current]
 
-type TokenType<S extends string> = MathToken | IdentifiersUsed<S>
+type IdentifiersUsed<S extends string> = IdentifiersUsedUtil<S>[number]
+
+type ExpressionToken<S extends string> = MathToken | IdentifiersUsed<S>
 
 type MatchLongestPrefixUtil<
   S extends string,
@@ -38,7 +40,29 @@ type MatchLongestPrefixUtil<
 type MatchLongestPrefix<S extends string> =
   S extends `${infer T extends Sign}${infer Rest}`
     ? T
-    : MatchLongestPrefixUtil<S, TokenType<S>>
+    : MatchLongestPrefixUtil<S, ExpressionToken<S>>
+
+type SymbolTableStructure<S extends string[]> = UnRoll<
+  S extends [infer First extends string, ...infer Last extends string[]]
+    ? First extends `${infer Token}.${infer Attr}`
+      ? {
+          [key in Token]: SymbolTableStructure<[Attr]>
+        } & SymbolTableStructure<Last>
+      : { [key in First]: OperandToken } & SymbolTableStructure<Last>
+    : {}
+>
+
+type ResolveValue<
+  Identifier extends string,
+  SymbolTable extends any,
+  Default extends OperandToken
+> = Identifier extends `${infer First}.${infer Attr}`
+  ? First extends keyof SymbolTable
+    ? ResolveValue<Attr, SymbolTable[First], Default>
+    : Default
+  : Identifier extends keyof SymbolTable
+  ? SymbolTable[Identifier]
+  : Default
 
 type Tokenize<
   S extends string,

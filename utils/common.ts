@@ -5,6 +5,12 @@ type Equal<X, Y> = (<T>() => T extends X ? 1 : 2) extends <T>() => T extends Y
   : false
 type Expecting<T extends true> = T
 
+type UnRoll<S> = S extends string
+  ? S
+  : {
+      [key in keyof S]: S[key] extends {} ? UnRoll<S[key]> : S[key]
+    }
+
 type StringTokenizeHead<
   S extends string,
   U extends string
