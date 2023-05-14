@@ -7,9 +7,17 @@ type SymbolTableStruct = SymbolTableStructure<IdentifiersUsedUtil<SanitizedEx>>
 //   ^?
 
 type SymbolTable = { a: 1; b: { val: 2; x: 3 }; ab: 55 }
-type ValueA = ResolveValue<'a', SymbolTable, never>
+type Tokens = Tokenize<SanitizedEx, SymbolTable>
 //   ^?
-type ValueBx = ResolveValue<'b.x', SymbolTable, never>
+type ParserTest1 = Expecting<
+  Equal<ResolveValue<'a', SymbolTable, never>, SymbolTable['a']>
+>
+type ParserTest2 = Expecting<
+  Equal<ResolveValue<'b.val', SymbolTable, never>, SymbolTable['b']['val']>
+>
+type ParserTest3 = Expecting<
+  Equal<ResolveValue<'ab', SymbolTable, never>, SymbolTable['ab']>
+>
+type ValueExpression = Eval<Expression, SymbolTable>
 //   ^?
-type ValueBy = ResolveValue<'b.y', SymbolTable, never>
-//   ^?
+type ParserTest4 = Expecting<Equal<ValueExpression, 539>>

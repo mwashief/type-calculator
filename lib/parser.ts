@@ -24,24 +24,6 @@ type IdentifiersUsed<S extends string> = IdentifiersUsedUtil<S>[number]
 
 type ExpressionToken<S extends string> = MathToken | IdentifiersUsed<S>
 
-type MatchLongestPrefixUtil<
-  S extends string,
-  T,
-  Seen extends string = '',
-  Token extends string = ''
-> = S extends `${infer First}${infer Last}`
-  ? `${Seen}${First}` extends T
-    ? MatchLongestPrefixUtil<Last, T, `${Seen}${First}`, `${Seen}${First}`>
-    : MatchLongestPrefixUtil<Last, T, `${Seen}${First}`, Token>
-  : Token extends ''
-  ? never
-  : Token
-
-type MatchLongestPrefix<S extends string> =
-  S extends `${infer T extends Sign}${infer Rest}`
-    ? T
-    : MatchLongestPrefixUtil<S, ExpressionToken<S>>
-
 type SymbolTableStructure<S extends string[]> = UnRoll<
   S extends [infer First extends string, ...infer Last extends string[]]
     ? First extends `${infer Token}.${infer Attr}`
@@ -64,22 +46,36 @@ type ResolveValue<
   ? SymbolTable[Identifier]
   : Default
 
+type MatchLongestPrefixUtil<
+  S extends string,
+  T,
+  Seen extends string = '',
+  Token extends string = ''
+> = S extends `${infer First}${infer Last}`
+  ? `${Seen}${First}` extends T
+    ? MatchLongestPrefixUtil<Last, T, `${Seen}${First}`, `${Seen}${First}`>
+    : MatchLongestPrefixUtil<Last, T, `${Seen}${First}`, Token>
+  : Token extends ''
+  ? never
+  : Token
+
+type MatchLongestPrefix<S extends string> =
+  S extends `${infer T extends Sign}${infer _Rest}`
+    ? T
+    : MatchLongestPrefixUtil<S, ExpressionToken<S>>
+
 type Tokenize<
   S extends string,
-  SymbolTable extends { [key in IdentifiersUsed<S>]: OperandToken } = {
-    [key in IdentifiersUsed<S>]: OperandToken
-  }
+  SymbolTable extends SymbolTableStructure<IdentifiersUsedUtil<S>>
 > = S extends `${MatchLongestPrefix<S>}${infer Rest}`
   ? S extends `${infer Token}${Rest}`
     ? [
-        Token extends IdentifiersUsed<S> ? `${SymbolTable[Token]}` : Token,
+        Token extends MathToken
+          ? Token
+          : ResolveValue<Token, SymbolTable, never>,
         ...Tokenize<
           Rest,
-          {
-            [key in IdentifiersUsed<Rest>]: key extends keyof SymbolTable
-              ? `${SymbolTable[key]}`
-              : '0'
-          }
+          SymbolTable & SymbolTableStructure<IdentifiersUsedUtil<Rest>>
         >
       ]
     : []
@@ -153,9 +149,9 @@ type Calc<
 
 type Eval<
   S extends string,
-  SymbolTable extends {
-    [key in IdentifiersUsed<SanitizeExpression<S>>]: OperandToken
-  }
+  SymbolTable extends SymbolTableStructure<
+    IdentifiersUsedUtil<SanitizeExpression<S>>
+  >
 > = Calc<
   Tokenize<SanitizeExpression<S>, SymbolTable>
 > extends `${infer Res extends number}`
