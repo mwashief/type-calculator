@@ -1,12 +1,10 @@
 type OperandToken = `${number}` | number
-type Operation = 'add' | 'subtract' | 'multiply'
 type ArithmaticOpSign = '+' | '-'
 type MultSign = '*'
 type DivSign = '/'
 type ModSign = '%'
 type NonArithmaticOpSign = MultSign | DivSign | ModSign
 type OpSign = ArithmaticOpSign | NonArithmaticOpSign
-type SpecialSymbol = '/' | '?' | ':'
 type StartingChar =
   | 'a'
   | 'b'

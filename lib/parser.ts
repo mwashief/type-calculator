@@ -1,3 +1,5 @@
+import { Add, Subtract, Multiply, Divide, Modulus } from './operation'
+
 type SanitizeExpression<S extends string> =
   S extends `${infer First}${infer Rest}`
     ? First extends WhiteSpace
@@ -158,7 +160,7 @@ type Calc<
   : CalcMul<Current>
 
 // TODO: Implement shunting-yard algorithm
-type Eval<
+export type Eval<
   S extends string,
   SymbolTable extends SymbolTableStructure<
     IdentifiersUsedUtil<SanitizeExpression<S>>

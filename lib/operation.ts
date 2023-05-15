@@ -1,32 +1,32 @@
-type Add<
+export type Add<
   U extends `${number}` | number,
   V extends `${number}` | number
 > = SignedIntegerToNumber<
   AddSignedInteger<ToSignedInteger<U>, ToSignedInteger<V>>
 >
 
-type Subtract<
+export type Subtract<
   U extends `${number}` | number,
   V extends `${number}` | number
 > = SignedIntegerToNumber<
   SubtractSignedInteger<ToSignedInteger<U>, ToSignedInteger<V>>
 >
 
-type Multiply<
+export type Multiply<
   U extends `${number}` | number,
   V extends `${number}` | number
 > = SignedIntegerToNumber<
   MultiplySignedInteger<ToSignedInteger<U>, ToSignedInteger<V>>
 >
 
-type Divide<
+export type Divide<
   U extends `${number}` | number,
   V extends `${number}` | number
 > = SignedIntegerToNumber<
   DivideSignedInteger<ToSignedInteger<U>, ToSignedInteger<V>>
 >
 
-type Modulus<
+export type Modulus<
   U extends `${number}` | number,
   V extends `${number}` | number
 > = SignedIntegerToNumber<

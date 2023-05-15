@@ -1,3 +1,5 @@
+import { Add, Subtract, Multiply, Divide, Modulus, Eval } from '../src/index'
+
 type Test1 = Expecting<Equal<Add<-6936792, -7432202>, -14368994>>
 type Test2 = Expecting<Equal<Subtract<-6936792, -7432202>, 495410>>
 type Test3 = Expecting<Equal<Multiply<-6936792, -7432202>, 51555639375984>>
@@ -48,14 +50,3 @@ type Test47 = Expecting<Equal<Subtract<-5275636, 9311672>, -14587308>>
 type Test48 = Expecting<Equal<Multiply<-5275636, 9311672>, -49124992023392>>
 type Test49 = Expecting<Equal<Divide<-5275636, 9311672>, -1>>
 type Test50 = Expecting<Equal<Modulus<-5275636, 9311672>, 4036036>>
-
-type num1 = ToSignedInteger<208>
-//   ^?
-type num2 = ToSignedInteger<2>
-//   ^?
-
-type d = DivideDigitArrayUtil<num1['integral'], num2['integral']>
-//   ^?
-
-type k = Divide<208, 2>
-//   ^?
