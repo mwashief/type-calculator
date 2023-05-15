@@ -65,3 +65,31 @@ type MultiplyRithNumber<U extends RithNumber, V extends RithNumber> = {
   sign: V['sign'] extends U['sign'] ? '+' : '-'
   integral: MultiplyDigitArray<U['integral'], V['integral']>
 }
+
+type DivideRithNumber<U extends RithNumber, V extends RithNumber> = {
+  sign: V['sign'] extends U['sign'] ? '+' : '-'
+  integral: V['sign'] extends U['sign']
+    ? DivideDigitArray<U['integral'], V['integral']>
+    : IsEqualDigitArray<
+        ModulusDigitArray<U['integral'], V['integral']>,
+        ['0']
+      > extends true
+    ? DivideDigitArray<U['integral'], V['integral']>
+    : AddDigitArray<DivideDigitArray<U['integral'], V['integral']>, ['1']>
+}
+
+// TODO: Correct this
+type ModulusRithNumber<U extends RithNumber, V extends RithNumber> = {
+  sign: V['sign']
+  integral: ModulusDigitArray<
+    V['sign'] extends U['sign']
+      ? U['integral']
+      : IsGreaterThanOrEqualDigitArray<
+          U['integral'],
+          V['integral']
+        > extends true
+      ? SubtractDigitArray<U['integral'], V['integral']>
+      : SubtractDigitArray<V['integral'], U['integral']>,
+    V['integral']
+  >
+}

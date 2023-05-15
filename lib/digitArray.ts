@@ -103,6 +103,11 @@ type IsEqualDigitArray<
     : false
   : false
 
+type IsNotEqualDigitArray<
+  U extends DigitArray,
+  V extends DigitArray
+> = IsEqualDigitArray<U, V> extends true ? false : true
+
 type MaxDigitArray<
   U extends DigitArray,
   V extends DigitArray
@@ -215,7 +220,54 @@ type MultiplyDigitArray<
 type DivideDigitArrayTrivialUtil<
   UU extends DigitArray,
   VV extends DigitArray,
-  P extends DigitArray = [],
+  P extends DigitArray = ['0'],
   U extends DigitArray = SanitizeDigitArray<UU>,
   V extends DigitArray = SanitizeDigitArray<VV>
-> = never
+> = IsGreaterThanOrEqualDigitArray<U, V> extends true
+  ? DivideDigitArrayTrivialUtil<
+      SubtractDigitArray<U, V>,
+      V,
+      AddDigitArray<P, ['1']>
+    >
+  : [P, U]
+
+type DivideDigitArrayUtil<
+  U extends DigitArray,
+  V extends DigitArray,
+  P extends DigitArray = [],
+  Res extends DigitArray = []
+> = DivideDigitArrayTrivialUtil<P, V> extends [
+  infer Quotient extends DigitArray,
+  infer Remainder extends DigitArray
+]
+  ? IsNotEqualDigitArray<[], Quotient> extends true
+    ? DivideDigitArrayUtil<
+        U,
+        V,
+        Remainder,
+        AddDigitArray<Res, [...EqualNumberofZeros<U>, ...Quotient]>
+      >
+    : U extends [...infer First extends DigitArray, infer Msd extends Digit]
+    ? DivideDigitArrayUtil<First, V, [Msd, ...P], Res>
+    : [Res, P]
+  : never
+
+type DivideDigitArray<
+  U extends DigitArray,
+  V extends DigitArray
+> = DivideDigitArrayUtil<SanitizeDigitArray<U>, SanitizeDigitArray<V>> extends [
+  infer Quotient extends DigitArray,
+  infer _
+]
+  ? Quotient
+  : never
+
+type ModulusDigitArray<
+  U extends DigitArray,
+  V extends DigitArray
+> = DivideDigitArrayUtil<U, V> extends [
+  infer _,
+  infer Remainder extends DigitArray
+]
+  ? Remainder
+  : never

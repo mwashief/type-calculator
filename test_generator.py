@@ -17,3 +17,6 @@ for i in range(0, 10):
     test_case(f"Add<{x}, {y}>", x+y)
     test_case(f"Subtract<{x}, {y}>", x-y)
     test_case(f"Multiply<{x}, {y}>", x*y)
+    if y != 0:
+        test_case(f"Divide<{x}, {y}>", x//y)
+        test_case(f"Modulus<{x}, {y}>", x%y)
