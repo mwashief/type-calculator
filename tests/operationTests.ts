@@ -1,4 +1,4 @@
-import { Add, Subtract, Multiply, Divide, Modulus, Eval } from '../src/index'
+import { Add, Subtract, Multiply, Divide, Modulus } from '../src/index'
 
 type Test1 = Expecting<Equal<Add<-6936792, -7432202>, -14368994>>
 type Test2 = Expecting<Equal<Subtract<-6936792, -7432202>, 495410>>
