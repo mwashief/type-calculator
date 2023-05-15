@@ -1,24 +1,34 @@
 type Add<
   U extends `${number}` | number,
   V extends `${number}` | number
-> = RithNumberToNumber<AddRithNumber<ToRithNumber<U>, ToRithNumber<V>>>
+> = SignedIntegerToNumber<
+  AddSignedInteger<ToSignedInteger<U>, ToSignedInteger<V>>
+>
 
 type Subtract<
   U extends `${number}` | number,
   V extends `${number}` | number
-> = RithNumberToNumber<SubtractRithNumber<ToRithNumber<U>, ToRithNumber<V>>>
+> = SignedIntegerToNumber<
+  SubtractSignedInteger<ToSignedInteger<U>, ToSignedInteger<V>>
+>
 
 type Multiply<
   U extends `${number}` | number,
   V extends `${number}` | number
-> = RithNumberToNumber<MultiplyRithNumber<ToRithNumber<U>, ToRithNumber<V>>>
+> = SignedIntegerToNumber<
+  MultiplySignedInteger<ToSignedInteger<U>, ToSignedInteger<V>>
+>
 
 type Divide<
   U extends `${number}` | number,
   V extends `${number}` | number
-> = RithNumberToNumber<DivideRithNumber<ToRithNumber<U>, ToRithNumber<V>>>
+> = SignedIntegerToNumber<
+  DivideSignedInteger<ToSignedInteger<U>, ToSignedInteger<V>>
+>
 
 type Modulus<
   U extends `${number}` | number,
   V extends `${number}` | number
-> = RithNumberToNumber<ModulusRithNumber<ToRithNumber<U>, ToRithNumber<V>>>
+> = SignedIntegerToNumber<
+  ModulusSignedInteger<ToSignedInteger<U>, ToSignedInteger<V>>
+>

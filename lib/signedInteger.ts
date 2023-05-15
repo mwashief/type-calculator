@@ -1,14 +1,14 @@
 type NumberSign = '+' | '-'
 
 // Signed Integer
-type RithNumber = { integral: DigitArray; sign: NumberSign }
+type SignedInteger = { integral: DigitArray; sign: NumberSign }
 
-type SanitizeRithNumber<T extends RithNumber> = {
+type SanitizeSignedInteger<T extends SignedInteger> = {
   integral: SanitizeDigitArray<T['integral']>
   sign: SanitizeDigitArray<T['integral']>['length'] extends 0 ? '+' : T['sign']
 }
 
-type StringToRithNumber<T extends string> = StringTokenizeHead<
+type StringToSignedInteger<T extends string> = StringTokenizeHead<
   T,
   NumberSign
 >[0] extends NumberSign
@@ -18,29 +18,29 @@ type StringToRithNumber<T extends string> = StringTokenizeHead<
     }
   : { sign: '+'; integral: ToDigitArray<T> }
 
-type ToRithNumber<T extends `${number}` | number> = T extends string
-  ? StringToRithNumber<T>
+type ToSignedInteger<T extends `${number}` | number> = T extends string
+  ? StringToSignedInteger<T>
   : `${T}` extends `${infer X}${'.'}${infer _}`
-  ? StringToRithNumber<X>
-  : StringToRithNumber<`${T}`>
+  ? StringToSignedInteger<X>
+  : StringToSignedInteger<`${T}`>
 
-type RithNumberToString<
-  UU extends RithNumber,
-  U extends RithNumber = SanitizeRithNumber<UU>
+type SignedIntegerToString<
+  UU extends SignedInteger,
+  U extends SignedInteger = SanitizeSignedInteger<UU>
 > = `${U['sign'] extends '-' ? '-' : ''}${DigitArrayToString<U['integral']>}`
 
-type RithNumberToNumber<
-  UU extends RithNumber,
-  U extends RithNumber = SanitizeRithNumber<UU>
+type SignedIntegerToNumber<
+  UU extends SignedInteger,
+  U extends SignedInteger = SanitizeSignedInteger<UU>
 > = `${U['sign'] extends '-' ? '-' : ''}${DigitArrayToString<
   U['integral']
 >}` extends `${infer num extends number}`
   ? num
   : 0
 
-type AddRithNumber<
-  U extends RithNumber,
-  V extends RithNumber
+type AddSignedInteger<
+  U extends SignedInteger,
+  V extends SignedInteger
 > = U['sign'] extends '+'
   ? V['sign'] extends '+'
     ? { sign: '+'; integral: AddDigitArray<U['integral'], V['integral']> }
@@ -53,20 +53,20 @@ type AddRithNumber<
   ? { sign: '+'; integral: SubtractDigitArray<V['integral'], U['integral']> }
   : { sign: '-'; integral: SubtractDigitArray<U['integral'], V['integral']> }
 
-type SubtractRithNumber<
-  U extends RithNumber,
-  V extends RithNumber
-> = AddRithNumber<
+type SubtractSignedInteger<
+  U extends SignedInteger,
+  V extends SignedInteger
+> = AddSignedInteger<
   U,
   { sign: V['sign'] extends '+' ? '-' : '+'; integral: V['integral'] }
 >
 
-type MultiplyRithNumber<U extends RithNumber, V extends RithNumber> = {
+type MultiplySignedInteger<U extends SignedInteger, V extends SignedInteger> = {
   sign: V['sign'] extends U['sign'] ? '+' : '-'
   integral: MultiplyDigitArray<U['integral'], V['integral']>
 }
 
-type DivideRithNumber<U extends RithNumber, V extends RithNumber> = {
+type DivideSignedInteger<U extends SignedInteger, V extends SignedInteger> = {
   sign: V['sign'] extends U['sign'] ? '+' : '-'
   integral: V['sign'] extends U['sign']
     ? DivideDigitArray<U['integral'], V['integral']>
@@ -79,7 +79,7 @@ type DivideRithNumber<U extends RithNumber, V extends RithNumber> = {
 }
 
 // TODO: Correct this
-type ModulusRithNumber<U extends RithNumber, V extends RithNumber> = {
+type ModulusSignedInteger<U extends SignedInteger, V extends SignedInteger> = {
   sign: V['sign']
   integral: ModulusDigitArray<
     V['sign'] extends U['sign']
