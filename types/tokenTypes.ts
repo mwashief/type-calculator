@@ -1,8 +1,11 @@
 type OperandToken = `${number}` | number
 type Operation = 'add' | 'subtract' | 'multiply'
-type ArithSign = '+' | '-'
+type ArithmaticOpSign = '+' | '-'
 type MultSign = '*'
-type Sign = ArithSign | MultSign
+type DivSign = '/'
+type ModSign = '%'
+type NonArithmaticOpSign = MultSign | DivSign | ModSign
+type OpSign = ArithmaticOpSign | NonArithmaticOpSign
 type SpecialSymbol = '/' | '?' | ':'
 type StartingChar =
   | 'a'
@@ -62,4 +65,4 @@ type StartingBracket = '('
 type EndingBracket = ')'
 type Bracket = StartingBracket | EndingBracket
 type WhiteSpace = ' ' | '\n' | '\t'
-type MathToken = OperandToken | Bracket | Sign
+type MathToken = OperandToken | Bracket | OpSign

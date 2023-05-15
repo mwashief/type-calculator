@@ -60,7 +60,7 @@ type MatchLongestPrefixUtil<
   : Token
 
 type MatchLongestPrefix<S extends string> =
-  S extends `${infer T extends Sign}${infer _Rest}`
+  S extends `${infer T extends OpSign}${infer _Rest}`
     ? T
     : MatchLongestPrefixUtil<S, ExpressionToken<S>>
 
@@ -82,27 +82,31 @@ type Tokenize<
   : []
 
 type CalcArith<E extends MathToken[]> = E extends [
-  infer Op1 extends ArithSign,
-  infer Op2 extends ArithSign,
+  infer Op1 extends ArithmaticOpSign,
+  infer Op2 extends ArithmaticOpSign,
   ...infer Right extends MathToken[]
 ]
-  ? CalcArith<[Op2 extends '-' ? Exclude<ArithSign, Op1> : Op1, ...Right]>
+  ? CalcArith<
+      [Op2 extends '-' ? Exclude<ArithmaticOpSign, Op1> : Op1, ...Right]
+    >
   : E extends [
       infer N extends MathToken,
-      infer Op1 extends ArithSign,
-      infer Op2 extends ArithSign,
+      infer Op1 extends ArithmaticOpSign,
+      infer Op2 extends ArithmaticOpSign,
       ...infer Right extends MathToken[]
     ]
-  ? CalcArith<[N, Op2 extends '-' ? Exclude<ArithSign, Op1> : Op1, ...Right]>
+  ? CalcArith<
+      [N, Op2 extends '-' ? Exclude<ArithmaticOpSign, Op1> : Op1, ...Right]
+    >
   : E extends [
       infer Op1 extends OperandToken,
-      infer Op extends ArithSign,
+      infer Op extends ArithmaticOpSign,
       infer Op2 extends OperandToken,
       ...infer Right extends MathToken[]
     ]
   ? CalcArith<[Op extends '+' ? Add<Op1, Op2> : Subtract<Op1, Op2>, ...Right]>
   : E extends [
-      infer Op extends ArithSign,
+      infer Op extends ArithmaticOpSign,
       infer Op2 extends OperandToken,
       ...infer Right extends MathToken[]
     ]
@@ -112,7 +116,7 @@ type CalcArith<E extends MathToken[]> = E extends [
   : never
 
 type CalcMul<S extends MathToken[], U extends MathToken[] = []> = S extends [
-  '*',
+  infer Op extends NonArithmaticOpSign,
   infer Op2 extends OperandToken,
   ...infer Rest extends MathToken[]
 ]
@@ -120,7 +124,13 @@ type CalcMul<S extends MathToken[], U extends MathToken[] = []> = S extends [
       ...infer FirstU extends MathToken[],
       infer Op1 extends OperandToken
     ]
-    ? CalcMul<Rest, [...FirstU, Multiply<Op1, Op2>]>
+    ? Op extends MultSign
+      ? CalcMul<Rest, [...FirstU, Multiply<Op1, Op2>]>
+      : Op extends DivSign
+      ? CalcMul<Rest, [...FirstU, Divide<Op1, Op2>]>
+      : Op extends ModSign
+      ? CalcMul<Rest, [...FirstU, Modulus<Op1, Op2>]>
+      : never
     : never
   : S extends [infer First extends MathToken, ...infer Rest extends MathToken[]]
   ? CalcMul<Rest, [...U, First]>
@@ -138,7 +148,7 @@ type Calc<
         [
           ...Stack,
           Current extends [...infer _, `${number}`]
-            ? [...Current, '*']
+            ? [...Current, MultSign]
             : Current
         ]
       >
@@ -147,6 +157,7 @@ type Calc<
     : Calc<Rest, [...Current, First], Stack>
   : CalcMul<Current>
 
+// TODO: Implement shunting-yard algorithm
 type Eval<
   S extends string,
   SymbolTable extends SymbolTableStructure<

@@ -48,3 +48,14 @@ type Test47 = Expecting<Equal<Subtract<-5275636, 9311672>, -14587308>>
 type Test48 = Expecting<Equal<Multiply<-5275636, 9311672>, -49124992023392>>
 type Test49 = Expecting<Equal<Divide<-5275636, 9311672>, -1>>
 type Test50 = Expecting<Equal<Modulus<-5275636, 9311672>, 4036036>>
+
+type num1 = ToRithNumber<208>
+//   ^?
+type num2 = ToRithNumber<2>
+//   ^?
+
+type d = DivideDigitArrayUtil<num1['integral'], num2['integral']>
+//   ^?
+
+type k = Divide<208, 2>
+//   ^?

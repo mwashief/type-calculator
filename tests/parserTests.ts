@@ -1,4 +1,4 @@
-type Expression = '4+ 5(a + b.val - (b.x - ab )* 2)'
+type Expression = '4%3+ 5(a + b.val - (b.x - ab )* 4/2)'
 type SanitizedEx = SanitizeExpression<Expression>
 //   ^?
 type Identifiers = IdentifiersUsed<SanitizedEx>
@@ -20,4 +20,4 @@ type ParserTest3 = Expecting<
 >
 type ValueExpression = Eval<Expression, SymbolTable>
 //   ^?
-type ParserTest4 = Expecting<Equal<ValueExpression, 539>>
+type ParserTest4 = Expecting<Equal<ValueExpression, 536>>
