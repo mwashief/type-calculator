@@ -1,7 +1,7 @@
 <table>
   <tr>
     <td valign="top"><img src="https://github.com/mwashief/type-calculator/blob/main/static/logo.png?raw=true" width='200'/></td>
-    <td valign="top"><h1><p>Type Calculator</h1>Simple arithmatics for compile-time type evaluation</p></td>
+    <td valign="top"><h1><p>Type Calculator</h1>Simple compile-time type evaluation</p></td>
   </tr>
 </table>
 
